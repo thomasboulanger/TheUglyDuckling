@@ -1,4 +1,0 @@
-TO DO 
-
-enum pour les actions
-scirptable object pour les combo contenant les actions et les array de keycode
