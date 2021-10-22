@@ -4,7 +4,7 @@ using Random = UnityEngine.Random;
 
 namespace Scenes.Jordan.Scripts
 {
-    public class EnemyManager : MonoBehaviour
+    public class EnemyManager : Entity
     {
         private State _currentState = State.Idle;
         
@@ -13,8 +13,9 @@ namespace Scenes.Jordan.Scripts
         private int _dodgeCount;
         private int _attackCount;
         
-        private Transform _player;
+        private Entity _player;
         
+        [Space(20)]
         [SerializeField] private int maxActionRepetition = 2;
         [SerializeField] private float distanceDetection = 10f;
         
@@ -26,7 +27,7 @@ namespace Scenes.Jordan.Scripts
 
         private void Awake()
         {
-            _player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).transform;
+            _player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).GetComponent<Entity>();
             
             ResetCounters();
         }
@@ -80,9 +81,10 @@ namespace Scenes.Jordan.Scripts
         {
             UpdateCounters(true);
             
-            //Todo : animation et damage
+            //Todo : animation
+            Damage(_player);
             
-            _isActive = true;
+            //_isActive = true;
             
             //TODO : OnAnimationEnd isActive false
         }
@@ -92,7 +94,7 @@ namespace Scenes.Jordan.Scripts
             UpdateCounters(false);
             
             //Todo : animation et esquive
-            _isActive = true;
+            //_isActive = true;
             
             //TODO : OnAnimationEnd isactive false
         }
@@ -100,7 +102,7 @@ namespace Scenes.Jordan.Scripts
         
         private bool PlayerDetected()
         {
-            var playerPosition = _player.position;
+            var playerPosition = _player.transform.position;
             var enemyPosition = transform.position;
 
             return Vector3.Distance(playerPosition, enemyPosition) < distanceDetection;
