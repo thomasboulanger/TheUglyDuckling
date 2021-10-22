@@ -44,7 +44,6 @@ public class BeatManager : MonoBehaviour
         _bpm3 = BPM3;
         _audioSource = GetComponent<AudioSource>();
         _volume = GetComponent<AudioSource>().volume;
-        
     }
 
     void Update()
