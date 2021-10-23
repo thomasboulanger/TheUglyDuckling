@@ -49,6 +49,7 @@ public class BeatManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         _audioSource.loop = true;
         _volume = GetComponent<AudioSource>().volume;
+        _sceneIndex = 0;
     }
 
     void Update()
