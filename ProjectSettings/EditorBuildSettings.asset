@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SceneThomas.unity
     guid: 28c9a1cc80ece214cb1e1409d1d65e6c
+  - enabled: 1
+    path: Assets/Scenes/SceneJordan.unity
+    guid: ed84dbab41b2bf54997dc7ac7f726677
   m_configObjects: {}

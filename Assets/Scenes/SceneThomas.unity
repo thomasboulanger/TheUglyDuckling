@@ -396,6 +396,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6006663419994272544, guid: 34fe5805f89667846935ee8b8b732642, type: 3}
+      propertyPath: _sceneEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006663419994272544, guid: 34fe5805f89667846935ee8b8b732642, type: 3}
+      propertyPath: _sceneEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6006663419994272544, guid: 34fe5805f89667846935ee8b8b732642, type: 3}
+      propertyPath: _sceneEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6588385512346869, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
+    - target: {fileID: 6006663419994272544, guid: 34fe5805f89667846935ee8b8b732642, type: 3}
+      propertyPath: _sceneEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6006663419994272546, guid: 34fe5805f89667846935ee8b8b732642, type: 3}
       propertyPath: m_Name
       value: SceneEvent
