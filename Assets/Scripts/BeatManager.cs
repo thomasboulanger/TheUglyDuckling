@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class BeatManager : MonoBehaviour
 {
-    public static BeatManager singleton;
-    
+    public static float rhythmStacks;
+
     public float BPM1;
     public float BPM2;
     public float BPM3;
@@ -24,34 +24,21 @@ public class BeatManager : MonoBehaviour
     private AudioSource _audioSource;
     private float _beatTimer;
     private static float _beatInterval;
-    private float _volume;
-    private float _rhythmStacks;
     private int _sceneIndex;
     
 
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
-        if (singleton == null)
-        {
-            singleton = this;
-            _audioSource = GetComponent<AudioSource>();
-            _volume = GetComponent<AudioSource>().volume;
-            _bpm1 = BPM1;
-            _bpm2 = BPM2;
-            _bpm3 = BPM3;
-            _audioSource.loop = true;
-        }
-    }
-
-    void Start()
-    {
-       
-        //_sceneIndex = 0;
+        _audioSource = GetComponent<AudioSource>();
+        _bpm1 = BPM1;
+        _bpm2 = BPM2;
+        _bpm3 = BPM3;
     }
 
     void Update()
     {
+        _audioSource.volume = .25f;
         if (_sceneIndex != 0)
         {
             _beatTimer += Time.deltaTime;
@@ -60,8 +47,6 @@ public class BeatManager : MonoBehaviour
         if (_beatTimer >= _beatInterval)
         {
             _beatTimer -= _beatInterval;
-            _audioSource.PlayOneShot(Music0);
-            
             //do the pulse here
         }
     }
