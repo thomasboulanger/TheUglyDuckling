@@ -1,11 +1,15 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 public class SceneEventScript : MonoBehaviour
 {
-    public UnityEvent _sceneEvent = new UnityEvent();
+    public UnityEvent sceneEvent = new UnityEvent();
+    private BeatManager _beatManager;
     void Start()
     {
-        _sceneEvent.Invoke();
+        _beatManager = GameObject.Find("GameManager").GetComponent<BeatManager>(); 
+        sceneEvent.AddListener(_beatManager.GetSceneIndex);
+        sceneEvent.Invoke();
     }
 }

@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class BeatManager : MonoBehaviour
 {
+    public static BeatManager singleton;
+    
     public float BPM1;
     public float BPM2;
     public float BPM3;
@@ -25,31 +27,27 @@ public class BeatManager : MonoBehaviour
     private float _volume;
     private float _rhythmStacks;
     private int _sceneIndex;
-
-    public enum enumScene
-    {
-        MainMenu,
-        Level1,
-        Level2,
-        Level3
-    }
-
-    public enumScene currentScene;
+    
 
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        if (singleton == null)
+        {
+            singleton = this;
+            _audioSource = GetComponent<AudioSource>();
+            _volume = GetComponent<AudioSource>().volume;
+            _bpm1 = BPM1;
+            _bpm2 = BPM2;
+            _bpm3 = BPM3;
+            _audioSource.loop = true;
+        }
     }
 
     void Start()
     {
-        _bpm1 = BPM1;
-        _bpm2 = BPM2;
-        _bpm3 = BPM3;
-        _audioSource = GetComponent<AudioSource>();
-        _audioSource.loop = true;
-        _volume = GetComponent<AudioSource>().volume;
-        _sceneIndex = 0;
+       
+        //_sceneIndex = 0;
     }
 
     void Update()
@@ -58,10 +56,12 @@ public class BeatManager : MonoBehaviour
         {
             _beatTimer += Time.deltaTime;
         }
-        
+
         if (_beatTimer >= _beatInterval)
         {
             _beatTimer -= _beatInterval;
+            _audioSource.PlayOneShot(Music0);
+            
             //do the pulse here
         }
     }
@@ -80,27 +80,23 @@ public class BeatManager : MonoBehaviour
         switch (_sceneIndex)
         {
             case 0:
-                currentScene = enumScene.MainMenu;
                 _audioSource.clip = Music0;          
                 _audioSource.Play();
                 break;
             
             case 1:
-                currentScene = enumScene.Level1;
                 _audioSource.clip = Music1;
                 _audioSource.Play();
                 _beatInterval = 60 / _bpm1;
                 break;
             
             case 2:
-                currentScene = enumScene.Level2;
                 _audioSource.clip = Music2;
                 _audioSource.Play();
                 _beatInterval = 60 / _bpm2;
                 break;
             
             case 3:
-                currentScene = enumScene.Level3;
                 _audioSource.clip = Music3;
                 _audioSource.Play();
                 _beatInterval = 60 / _bpm3;
