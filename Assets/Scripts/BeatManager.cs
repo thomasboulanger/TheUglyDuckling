@@ -7,8 +7,10 @@ using UnityEngine.SceneManagement;
 
 public class BeatManager : MonoBehaviour
 {
-    public static float rhythmStacks;
-
+    public static float stacks;
+    public static float beatTimer;
+    public static float beatInterval;
+    
     public float BPM1;
     public float BPM2;
     public float BPM3;
@@ -16,14 +18,11 @@ public class BeatManager : MonoBehaviour
     public AudioClip Music1;
     public AudioClip Music2;
     public AudioClip Music3;
-    
 
     private static float _bpm1;
     private static float _bpm2;
     private static float _bpm3;
-    private AudioSource _audioSource;
-    private float _beatTimer;
-    private static float _beatInterval;
+    private static AudioSource _audioSource;
     private int _sceneIndex;
     
 
@@ -38,17 +37,32 @@ public class BeatManager : MonoBehaviour
 
     void Update()
     {
-        _audioSource.volume = .25f;
+       
         if (_sceneIndex != 0)
         {
-            _beatTimer += Time.deltaTime;
+            beatTimer += Time.deltaTime;
+            
+            if (stacks > 0 )
+            {
+                if (stacks >= 12) 
+                {
+                    stacks = 12;
+                }
+
+                _audioSource.volume = .25f + (0.0625f * stacks);
+            }
+            else
+            {
+                _audioSource.volume = .25f;
+            }
         }
 
-        if (_beatTimer >= _beatInterval)
+        if (beatTimer >= beatInterval)
         {
-            _beatTimer -= _beatInterval;
+            beatTimer -= beatInterval;
             //do the pulse here
         }
+
     }
 
     public void GetSceneIndex()
@@ -65,26 +79,30 @@ public class BeatManager : MonoBehaviour
         switch (_sceneIndex)
         {
             case 0:
+                _audioSource.volume = 1f;
                 _audioSource.clip = Music0;          
                 _audioSource.Play();
                 break;
             
             case 1:
+                _audioSource.volume = .25f;
                 _audioSource.clip = Music1;
                 _audioSource.Play();
-                _beatInterval = 60 / _bpm1;
+                beatInterval = 60 / _bpm1;
                 break;
             
             case 2:
+                _audioSource.volume = .25f;
                 _audioSource.clip = Music2;
                 _audioSource.Play();
-                _beatInterval = 60 / _bpm2;
+                beatInterval = 60 / _bpm2;
                 break;
             
             case 3:
+                _audioSource.volume = .25f;
                 _audioSource.clip = Music3;
                 _audioSource.Play();
-                _beatInterval = 60 / _bpm3;
+                beatInterval = 60 / _bpm3;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
