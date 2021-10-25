@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -6,14 +7,18 @@ namespace Scenes.Jordan.Scripts
 {
     public class EnemyManager : Entity
     {
-        private State _currentState = State.Idle;
+        protected Animator Animator;
         
-        private bool _isActive;
+        protected bool IsActive;
+        
+        private State _currentState = State.Idle;
+
+        private Projectile _projectile;
 
         private int _dodgeCount;
         private int _attackCount;
         
-        private Entity _player;
+        protected Entity Player;
         
         [Space(20)]
         [SerializeField] private int maxActionRepetition = 2;
@@ -22,12 +27,15 @@ namespace Scenes.Jordan.Scripts
         private enum State
         {
             Idle,
-            Combat
+            Combat,
+            Dead
         }
 
         private void Awake()
         {
-            _player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).GetComponent<Entity>();
+            Animator = GetComponent<Animator>();
+            _projectile = GetComponentInChildren<Projectile>();
+            Player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).GetComponent<Entity>();
             
             ResetCounters();
         }
@@ -42,6 +50,9 @@ namespace Scenes.Jordan.Scripts
                 case (State.Combat):
                     Combat();
                     break;
+                case (State.Dead):
+                    Dead();
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
@@ -50,72 +61,78 @@ namespace Scenes.Jordan.Scripts
         #region States
         private void Idle()
         {
-            if (PlayerDetected()) _currentState = State.Combat;
+            _currentState = PlayerDetected();
+            if (IsDead) _currentState = State.Dead;
         }
         
         private void Combat()
         {
             EnemyActions();
             
-            if (!PlayerDetected()) _currentState = State.Idle;
+            _currentState = PlayerDetected();
+            if (IsDead) _currentState = State.Dead;
+        }
+
+        private void Dead()
+        {
+            Animator.Play(Variables.DeadAnimName);
         }
         #endregion
         
         #region Actions
+        protected virtual void RandomAction()
+        {
+            var randomIndex = Random.Range(Variables.FirstActionIndex, Variables.NumberOfActions);
+
+            if (randomIndex == Variables.FirstActionIndex) Attack();
+            else Dodge();
+        }
+        
         private void EnemyActions()
         {
-            if (_isActive) return;
+            if (IsActive) return;
             
             if(_dodgeCount == maxActionRepetition) Attack();
             else if(_attackCount == maxActionRepetition) Dodge();
-            else
-            {
-                var randomIndex = Random.Range(Variables.FirstActionIndex, Variables.NumberOfActions);
-
-                if (randomIndex == Variables.FirstActionIndex) Attack();
-                else Dodge();
-            }
+            else RandomAction();
         }
         
         private void Attack()
         {
             UpdateCounters(true);
             
-            //Todo : animation
-            Damage(_player);
+            IsActive = true;
             
-            //_isActive = true;
+            Animator.Play(Variables.AttackAnimName);
             
-            //TODO : OnAnimationEnd isActive false
+            Damage(Player);
         }
         
         private void Dodge()
         {
             UpdateCounters(false);
             
-            //Todo : animation et esquive
-            //_isActive = true;
+            IsActive = true;
             
-            //TODO : OnAnimationEnd isactive false
+            Animator.Play(Variables.DodgeAnimName);
         }
         #endregion
+
+        #region AnimationEvent
+        [UsedImplicitly] private void EndAnimation() => IsActive = false;
+        [UsedImplicitly] private void DestroyWhenDead() => Destroy(gameObject);
+        #endregion
         
-        private bool PlayerDetected()
+        private State PlayerDetected()
         {
-            var playerPosition = _player.transform.position;
+            var playerPosition = Player.transform.position;
             var enemyPosition = transform.position;
 
-            return Vector3.Distance(playerPosition, enemyPosition) < distanceDetection;
+            return Vector3.Distance(playerPosition, enemyPosition) < distanceDetection ? State.Combat : State.Idle;
         }
 
         #region Counters
-        private void ResetCounters()
-        {
-            _dodgeCount = Variables.ResetCounter;
-            _attackCount = Variables.ResetCounter;
-        }
-
-        private void UpdateCounters(bool isAttack)
+        protected void UpdateCounters(bool isAttack)
         {
             if (isAttack)
             {
@@ -127,6 +144,12 @@ namespace Scenes.Jordan.Scripts
                 _attackCount = Variables.ResetCounter;
                 _dodgeCount++;
             }
+        }
+        
+        private void ResetCounters()
+        {
+            _dodgeCount = Variables.ResetCounter;
+            _attackCount = Variables.ResetCounter;
         }
         #endregion
     }
