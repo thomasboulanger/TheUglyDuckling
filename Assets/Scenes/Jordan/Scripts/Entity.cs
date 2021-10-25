@@ -4,21 +4,11 @@ namespace Scenes.Jordan.Scripts
 {
     public class Entity : MonoBehaviour
     {
-        private bool _isDead;
+        protected bool IsDead;
         
         [Header("Stats")]
         [SerializeField] private int health;
         [SerializeField] private int damage;
-        
-        private bool IsDead
-        {
-            set
-            {
-                _isDead = value;
-                
-                if(_isDead && !gameObject.CompareTag(Variables.PlayerTag)) Destroy(gameObject);
-            }
-        }
         
         private int Health
         {
@@ -31,6 +21,6 @@ namespace Scenes.Jordan.Scripts
             }
         }
         
-        protected void Damage(Entity entity) => entity.Health -= damage;
+        public void Damage(Entity entity) => Health -= entity.damage;
     }
 }

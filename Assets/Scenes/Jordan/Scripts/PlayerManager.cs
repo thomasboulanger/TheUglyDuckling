@@ -7,7 +7,19 @@ namespace Scenes.Jordan.Scripts
         //temp damage enemy
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space)) Damage(GameObject.FindGameObjectWithTag("Enemy").GetComponent<Entity>());
+            Attack();
+        }
+
+        private void Attack()
+        {
+            if (Input.GetKeyDown(KeyCode.Space)) Damage(GameObject.FindGameObjectWithTag("Enemy").GetComponent<Entity>());
+
+            //TODO : anim + box collider
+        }
+        
+        private void OnCollisionEnter(Collision other)
+        {
+            if(other.gameObject.CompareTag(Variables.EnemyTag)) Damage(other.gameObject.GetComponent<Entity>());
         }
     }
 }
