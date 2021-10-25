@@ -4,6 +4,7 @@ namespace Scenes.Jordan.Scripts
     {
         public const int ResetCounter = 0;
         public const int FirstActionIndex = 0;
+        public const int FirstAttackIndex = 0;
         public const int NumberOfActions = 2;
         public const int HealthToBeDead = 0;
 

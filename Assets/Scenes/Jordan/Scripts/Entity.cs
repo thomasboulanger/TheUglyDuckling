@@ -21,6 +21,6 @@ namespace Scenes.Jordan.Scripts
             }
         }
         
-        public void Damage(Entity entity) => Health -= entity.damage;
+        public void TakeDamage(Entity entity) => Health -= entity.damage;
     }
 }

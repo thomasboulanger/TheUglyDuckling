@@ -8,25 +8,33 @@ namespace Scenes.Jordan.Scripts
         
         protected override void RandomAction()
         {
-            //select btw attacks animations
-            var randomIndex = Random.Range(Variables.FirstActionIndex, Variables.NumberOfActions + numberOfAttacks - 1);
+            var randomIndex = Random.Range(1, Variables.NumberOfActions + numberOfAttacks);
 
-            /*if (randomIndex == Variables.FirstActionIndex) Attack();
-            else Dodge();*/
+            for (var i = 1; i <= numberOfAttacks; i++)
+            {
+                if (randomIndex != i) continue;
+                
+                Attack(randomIndex);
+                return;
+            }
+
+            Dodge();
         }
-        
-        private void Attack()
+
+        protected override void Attack()
+        {
+            var randomIndex = Random.Range(Variables.FirstAttackIndex, numberOfAttacks + 1);
+            
+            Attack(randomIndex);
+        }
+
+        private void Attack(int attackIndex)
         {
             UpdateCounters(true);
             
             IsActive = true;
-
-            for (var i = 1; i < numberOfAttacks + 1; i++)
-            {
-                Animator.Play(name + Variables.AttackAnimName + i);
-            }
-            Animator.Play(Variables.AttackAnimName);
-            Damage(Player);
+            
+            Animator.Play(name + Variables.AttackAnimName + attackIndex);
         }
     }
 }

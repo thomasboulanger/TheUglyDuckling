@@ -13,12 +13,10 @@ namespace Scenes.Jordan.Scripts
         
         private State _currentState = State.Idle;
 
-        private Projectile _projectile;
-
         private int _dodgeCount;
         private int _attackCount;
-        
-        protected Entity Player;
+
+        private Entity _player;
         
         [Space(20)]
         [SerializeField] private int maxActionRepetition = 2;
@@ -34,8 +32,7 @@ namespace Scenes.Jordan.Scripts
         private void Awake()
         {
             Animator = GetComponent<Animator>();
-            _projectile = GetComponentInChildren<Projectile>();
-            Player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).GetComponent<Entity>();
+            _player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).GetComponent<Entity>();
             
             ResetCounters();
         }
@@ -97,18 +94,16 @@ namespace Scenes.Jordan.Scripts
             else RandomAction();
         }
         
-        private void Attack()
+        protected virtual void Attack()
         {
             UpdateCounters(true);
             
             IsActive = true;
             
             Animator.Play(Variables.AttackAnimName);
-            
-            Damage(Player);
         }
         
-        private void Dodge()
+        protected void Dodge()
         {
             UpdateCounters(false);
             
@@ -125,7 +120,7 @@ namespace Scenes.Jordan.Scripts
         
         private State PlayerDetected()
         {
-            var playerPosition = Player.transform.position;
+            var playerPosition = _player.transform.position;
             var enemyPosition = transform.position;
 
             return Vector3.Distance(playerPosition, enemyPosition) < distanceDetection ? State.Combat : State.Idle;

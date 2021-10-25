@@ -6,14 +6,23 @@ namespace Scenes.Jordan.Scripts
     {
         private Entity _entity;
 
+        private bool _isPlayer;
+
         private void Awake()
         {
             _entity = GetComponentInParent<Entity>();
+
+            DetectIfPlayerIsEntity();
         }
 
-        /*private void OnTriggerEnter(Collider other)
+        private void DetectIfPlayerIsEntity() => _isPlayer = _entity.CompareTag(Variables.PlayerTag);
+
+        private void OnTriggerEnter(Collider other)
         {
-            if(other.CompareTag(Variables.PlayerTag)) other.GetComponent<Entity>().Damage(_entity);
-        }*/
+            if(!_isPlayer && other.CompareTag(Variables.PlayerTag)) 
+                other.GetComponent<Entity>().TakeDamage(_entity);
+            else if (_isPlayer && other.CompareTag(Variables.EnemyTag)) 
+                other.GetComponent<Entity>().TakeDamage(_entity);
+        }
     }
 }
