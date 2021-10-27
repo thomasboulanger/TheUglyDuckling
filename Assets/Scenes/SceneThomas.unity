@@ -939,7 +939,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b0fc4137c61fec945b9b1a2c49ef6604, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1100,6 +1100,11 @@ MonoBehaviour:
   test2: {fileID: 1724100962}
   test3: {fileID: 1086683192}
   test4: {fileID: 1042537272}
+  comboList:
+  - GGGD
+  - DDGD
+  - BBDG
+  - HHGD
 --- !u!1001 &6588385596145877
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1107,6 +1112,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6588385512346868, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
+      propertyPath: test1
+      value: 
+      objectReference: {fileID: 1209992998}
+    - target: {fileID: 6588385512346868, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
+      propertyPath: test2
+      value: 
+      objectReference: {fileID: 1724100962}
+    - target: {fileID: 6588385512346868, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
+      propertyPath: test3
+      value: 
+      objectReference: {fileID: 1086683192}
+    - target: {fileID: 6588385512346868, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
+      propertyPath: test4
+      value: 
+      objectReference: {fileID: 1042537272}
+    - target: {fileID: 6588385512346868, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
+      propertyPath: percentMargin
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 6588385512346869, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
       propertyPath: m_Name
       value: GameManager

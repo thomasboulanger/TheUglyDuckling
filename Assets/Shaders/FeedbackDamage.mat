@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ShaderDIssolve
-  m_Shader: {fileID: -6465566751694194690, guid: 7ed6aa883be91374294b073140616b42, type: 3}
+  m_Name: FeedbackDamage
+  m_Shader: {fileID: -6465566751694194690, guid: 757b69fc90ff48c4da117e9be531aa09, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - MainTexture:
+        m_Texture: {fileID: 2800000, guid: ccc3eff74aa0ca84494d892bb76cb252, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -32,10 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_E9AFC9CE: 0.02
-    - Vector1_EFF17ED0: 30
-    - dissolveFloat: 0
+    - FloatDamage: 0
     m_Colors:
-    - Color_261633DE: {r: 0, g: 5.270588, b: 16, a: 0}
-    - Color_6E64264: {r: 0.6603774, g: 0.06579299, b: 0, a: 0}
+    - DamageColor: {r: 1.649499, g: 2, b: 0.8207548, a: 0}
   m_BuildTextureStacks: []
