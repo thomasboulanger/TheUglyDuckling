@@ -9,7 +9,6 @@ using UnityEngine.UI;
 public class BeatManager : MonoBehaviour
 {
     public static float stacks;
-    public static float UiStacks;
     public static float beatTimer;
     public static float beatInterval;
     public static bool aperture;
@@ -50,12 +49,10 @@ public class BeatManager : MonoBehaviour
 
     void Update()
     {
-       
 
         if (beatTimer >= beatInterval)
         {
             beatTimer -= beatInterval;
-            
         }
 
         if (_sceneIndex != 0)
@@ -66,13 +63,11 @@ public class BeatManager : MonoBehaviour
             {
                 aperture = true;
                 _tmpColor.a = 1f;
-                aperture = true;
             }
             else
             {
                 aperture = false;
                 _tmpColor.a = 0f;
-                aperture = false;
             }
 
             test1.GetComponent<RawImage>().color = _tmpColor;
@@ -82,12 +77,12 @@ public class BeatManager : MonoBehaviour
             
             if (stacks > 0 )
             {
-                if (stacks >= 12) 
+                if (stacks >= 3) 
                 {
-                    stacks = 12;
+                    stacks = 3;
                 }
 
-                _audioSource.volume = .25f + (0.0625f * stacks);
+                _audioSource.volume = .25f + (.25f * stacks);
             }
             else
             {
