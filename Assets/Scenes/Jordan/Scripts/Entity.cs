@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Scenes.Jordan.Scripts
 {
-    public class Entity : MonoBehaviour
+    public abstract class Entity : MonoBehaviour
     {
         protected bool IsDead;
         
@@ -10,10 +10,10 @@ namespace Scenes.Jordan.Scripts
         [SerializeField] private int health;
         [SerializeField] private int damage;
         
-        private int Health
+        protected int Health
         {
             get => health;
-            set
+            private set
             {
                 health = value;
                 

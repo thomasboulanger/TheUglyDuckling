@@ -343,14 +343,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 376111678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e6e634ea0307374d8dc0d720ee9dda5, type: 3}
+  m_Script: {fileID: 11500000, guid: 1bb28715c73629145a6c034904cc4492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 2
-  damage: 1
+  health: 0
+  damage: 0
   maxActionRepetition: 2
   distanceDetection: 10
-  numberOfAttacks: 2
+  nbAttacks: 2
 --- !u!65 &376111680
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -607,7 +607,6 @@ GameObject:
   - component: {fileID: 1719649969}
   - component: {fileID: 1719649968}
   - component: {fileID: 1719649973}
-  - component: {fileID: 1719649972}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -691,20 +690,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1719649972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1719649967}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed3ae37b20503c04f81a3720bb7f16bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 2
-  damage: 1
 --- !u!54 &1719649973
 Rigidbody:
   m_ObjectHideFlags: 0
