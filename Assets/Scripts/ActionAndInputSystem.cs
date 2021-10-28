@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ActionAndInputSystem : MonoBehaviour
 {
@@ -126,25 +122,26 @@ public class ActionAndInputSystem : MonoBehaviour
     
     public void Avancer()
     {
-        _combo = "";
-        _delayAfterCombo = true;
+        OnCombo();
     }
     public void Attaquer()
     {
-        _combo = "";
-        _delayAfterCombo = true;
+        OnCombo();
     }
     public void Retraite()
+    {
+        OnCombo();
+    }
+    public void CoupSpecial()
+    {
+        OnCombo();
+    }
+    
+    private void OnCombo()
     {
         _combo = "";
         _delayAfterCombo = true;
     }
-    public void CoupSpecial()
-    { 
-        _combo = "";
-        _delayAfterCombo = true;
-    }
-    
     private void BreakCombo()
     {
         BeatManager.stacks = 0;

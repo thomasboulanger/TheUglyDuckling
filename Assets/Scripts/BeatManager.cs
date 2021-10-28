@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -44,7 +41,6 @@ public class BeatManager : MonoBehaviour
         _bpm3 = BPM3;
         
         _tmpColor = test1.GetComponent<RawImage>().color;
-
     }
 
     void Update()
