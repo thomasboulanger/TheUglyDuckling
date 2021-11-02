@@ -85,8 +85,6 @@ public class BeatManager : MonoBehaviour
                 _audioSource.volume = .25f;
             }
         }
-
-       
     }
 
     public void GetSceneIndex()
