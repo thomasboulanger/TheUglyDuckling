@@ -50,12 +50,13 @@ public class BeatManager : MonoBehaviour
         {
             beatTimer -= beatInterval;
         }
+        
 
         if (_sceneIndex != 0)
         {
             beatTimer += Time.deltaTime;
             
-            if (beatTimer <= _beatMargin * .5f || beatTimer >= beatInterval - (_beatMargin * 1.5f))
+            if (beatTimer <= _beatMargin || beatTimer >= beatInterval - (_beatMargin))
             {
                 aperture = true;
                 _tmpColor.a = 1f;
@@ -76,6 +77,7 @@ public class BeatManager : MonoBehaviour
                 if (stacks >= 3) 
                 {
                     stacks = 3;
+                    //UI fever ici
                 }
 
                 _audioSource.volume = .25f + (.25f * stacks);

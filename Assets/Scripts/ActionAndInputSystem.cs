@@ -14,6 +14,7 @@ public class ActionAndInputSystem : MonoBehaviour
     private string _combo = "";
     private bool _delayAfterCombo;
     private int _afterComboTimer;
+    private int _afkTimer;
     
     void Start()
     {
@@ -26,6 +27,7 @@ public class ActionAndInputSystem : MonoBehaviour
 
         if (BeatManager.beatTimer >= BeatManager.beatInterval)
         {
+            _afkTimer++;
             if (_delayAfterCombo)
             {
                 _afterComboTimer++;
@@ -37,6 +39,11 @@ public class ActionAndInputSystem : MonoBehaviour
             _delayAfterCombo = false;
             _afterComboTimer = 0;
         }
+
+        if (_afkTimer >= 2)
+        {
+            _combo = "";
+        }
         
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -47,7 +54,7 @@ public class ActionAndInputSystem : MonoBehaviour
             }
             else
             {
-                BeatManager.stacks++;
+                _afkTimer = 0;
                 _combo += "H";
             }
         }
@@ -61,7 +68,7 @@ public class ActionAndInputSystem : MonoBehaviour
             }
             else
             {
-                BeatManager.stacks++;
+                _afkTimer = 0;
                 _combo += "B";
             }
         }
@@ -75,7 +82,7 @@ public class ActionAndInputSystem : MonoBehaviour
             }
             else
             {
-                BeatManager.stacks++;
+                _afkTimer = 0;
                 _combo += "G";
             }
         }
@@ -89,7 +96,7 @@ public class ActionAndInputSystem : MonoBehaviour
             }
             else
             {
-                BeatManager.stacks++;
+                _afkTimer = 0;
                 _combo += "D";
             }
         }
@@ -103,18 +110,22 @@ public class ActionAndInputSystem : MonoBehaviour
             
             if (_combo == comboList[0])
             {
+                BeatManager.stacks++;
                 Avancer();
             }
             else if (_combo == comboList[1])
             {
+                BeatManager.stacks++;
                 Attaquer();
             }
             else if (_combo == comboList[2])
             {
+                BeatManager.stacks++;
                 Retraite();
             }
             else if (_combo == comboList[3])
             {
+                BeatManager.stacks++;
                 CoupSpecial();
             }
         }

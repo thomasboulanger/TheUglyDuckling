@@ -36,7 +36,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - FloatDamage: 0
+    - FloatDamage: 1
     m_Colors:
     - DamageColor: {r: 1.649499, g: 2, b: 0.8207548, a: 0}
   m_BuildTextureStacks: []

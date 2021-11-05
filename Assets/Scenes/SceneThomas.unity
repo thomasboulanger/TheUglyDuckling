@@ -1095,11 +1095,6 @@ MonoBehaviour:
   clipDown: {fileID: 8300000, guid: 2fe9a34d9ffe05644b5a701b0cd6d2be, type: 3}
   clipLeft: {fileID: 8300000, guid: c7065886735c87f4d914fe0ca3cf445a, type: 3}
   clipRight: {fileID: 8300000, guid: 768763676cf79074e87de8911ac1aad0, type: 3}
-  percentMargin: 25
-  test1: {fileID: 1209992998}
-  test2: {fileID: 1724100962}
-  test3: {fileID: 1086683192}
-  test4: {fileID: 1042537272}
   comboList:
   - GGGD
   - DDGD
@@ -1129,6 +1124,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1042537272}
     - target: {fileID: 6588385512346868, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
+      propertyPath: Music0
+      value: 
+      objectReference: {fileID: 8300000, guid: d481864a7872d584d90bc92f84c23bca, type: 3}
+    - target: {fileID: 6588385512346868, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
       propertyPath: percentMargin
       value: 25
       objectReference: {fileID: 0}
@@ -1136,10 +1135,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 6588385512346870, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: -1612913791634123452, guid: 660b617ae439ed64095c37e447a100ec, type: 2}
     - target: {fileID: 6588385512346871, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
       propertyPath: m_RootOrder
       value: 3
