@@ -1123,14 +1123,6 @@ PrefabInstance:
       propertyPath: test4
       value: 
       objectReference: {fileID: 1042537272}
-    - target: {fileID: 6588385512346868, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
-      propertyPath: Music0
-      value: 
-      objectReference: {fileID: 8300000, guid: d481864a7872d584d90bc92f84c23bca, type: 3}
-    - target: {fileID: 6588385512346868, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
-      propertyPath: percentMargin
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 6588385512346869, guid: ad3307bb545611845829ae0a96f563cd, type: 3}
       propertyPath: m_Name
       value: GameManager
