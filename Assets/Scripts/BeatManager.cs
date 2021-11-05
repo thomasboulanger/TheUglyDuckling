@@ -50,7 +50,6 @@ public class BeatManager : MonoBehaviour
         {
             beatTimer -= beatInterval;
         }
-        
 
         if (_sceneIndex != 0)
         {
@@ -96,7 +95,7 @@ public class BeatManager : MonoBehaviour
         //for development only
         if (_sceneIndex > 3)
         {
-            _sceneIndex = 3;
+            _sceneIndex = 2;
         }
         //end
         
