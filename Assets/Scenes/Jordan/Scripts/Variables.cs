@@ -26,7 +26,7 @@ namespace Scenes.Jordan.Scripts
         public const string ReloadAnimName = "Reload";
         public const string RestAnimName = "Rest";
         #endregion
-
+        
         public const string LayersTextureName = "_BaseMap";
     }
 }

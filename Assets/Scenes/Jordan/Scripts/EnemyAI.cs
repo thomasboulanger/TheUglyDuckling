@@ -13,7 +13,6 @@ namespace Scenes.Jordan.Scripts
         
         protected int AttackCount;
         
-        [Space(20)]
         [SerializeField] protected int maxActionRepetition = 2;
         [SerializeField] protected float distanceDetection = 10f;
         
@@ -22,7 +21,9 @@ namespace Scenes.Jordan.Scripts
         private int _dodgeCount;
         
         private Transform _player;
-        
+
+        private Weapon _weapon;
+
         private enum State
         {
             Idle,
@@ -33,6 +34,9 @@ namespace Scenes.Jordan.Scripts
         private void Awake()
         {
             Animator = GetComponent<Animator>();
+
+            _weapon = GetComponentInChildren<Weapon>();
+            
             _player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).transform;
             
             ResetCounters();
@@ -91,6 +95,8 @@ namespace Scenes.Jordan.Scripts
             IsActive = true;
             
             Animator.Play(Variables.AttackAnimName);
+            
+            _weapon.Shoot();
         }
         
         protected void Dodge()

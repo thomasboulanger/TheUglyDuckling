@@ -6,10 +6,8 @@ namespace Scenes.Jordan.Scripts
     {
         protected bool IsDead;
         
-        [Header("Stats")]
         [SerializeField] private int health;
-        [SerializeField] private int damage;
-        
+
         protected int Health
         {
             get => health;
@@ -21,6 +19,6 @@ namespace Scenes.Jordan.Scripts
             }
         }
         
-        public void TakeDamage(Entity entity) => Health -= entity.damage;
+        public void TakeDamage(int damage) => Health -= damage;
     }
 }
