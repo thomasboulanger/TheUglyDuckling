@@ -39,7 +39,7 @@ namespace Scenes.Jordan.Scripts
 
         private void Update()
         {
-            if (isPlayer && Input.GetKeyDown(KeyCode.Space)) Shoot();
+            //if (isPlayer && Input.GetKeyDown(KeyCode.Space)) Shoot();
         }
 
         public void Shoot()
