@@ -45,7 +45,7 @@ public class ActionAndInputSystem : MonoBehaviour
             _combo = "";
         }
         
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (InputManager.UpInput)
         {
             _audioSource.PlayOneShot(clipUp);
             if (_delayAfterCombo || !_aperture)
@@ -59,7 +59,7 @@ public class ActionAndInputSystem : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (InputManager.DownInput)
         {
             _audioSource.PlayOneShot(clipDown);
             if (_delayAfterCombo || !_aperture)
@@ -73,7 +73,7 @@ public class ActionAndInputSystem : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (InputManager.LeftInput)
         {
             _audioSource.PlayOneShot(clipLeft);
             if (_delayAfterCombo || !_aperture)
@@ -87,7 +87,7 @@ public class ActionAndInputSystem : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (InputManager.RightInput)
         {
             _audioSource.PlayOneShot(clipRight);
             if (_delayAfterCombo || !_aperture)
