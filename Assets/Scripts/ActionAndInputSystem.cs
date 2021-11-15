@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Scenes.Jordan.Scripts;
 using UnityEngine;
 
-public class ActionAndInputSystem : MonoBehaviour
+public class ActionAndInputSystem : Entity
 {
     public AudioClip clipUp;
     public AudioClip clipDown;
