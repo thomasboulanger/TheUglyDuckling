@@ -17,7 +17,7 @@ namespace Scenes.Jordan.Scripts
         
         protected override void EnemyActions()
         {
-            if (!IsActive) RandomAction();
+            if (!isActive) RandomAction();
         }
 
         #region RandomActions

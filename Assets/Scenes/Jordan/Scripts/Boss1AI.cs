@@ -4,9 +4,9 @@ namespace Scenes.Jordan.Scripts
     {
         protected override void EnemyActions()
         {
-            if (IsActive) return;
+            if (isActive) return;
             
-            if(AttackCount == maxActionRepetition) Reload();
+            if(attackCount == maxActionRepetition) Reload();
             else RandomAction();
         }
     }

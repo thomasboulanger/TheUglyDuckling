@@ -7,11 +7,11 @@ namespace Scenes.Jordan.Scripts
 {
     public class EnemyAI : Entity
     {
-        protected Animator Animator;
+        protected Animator animator;
         
-        protected bool IsActive;
+        protected bool isActive;
         
-        protected int AttackCount;
+        protected int attackCount;
         
         [SerializeField] protected int maxActionRepetition = 2;
         [SerializeField] protected float distanceDetection = 10f;
@@ -33,7 +33,7 @@ namespace Scenes.Jordan.Scripts
 
         private void Awake()
         {
-            Animator = GetComponent<Animator>();
+            animator = GetComponent<Animator>();
 
             _weapon = GetComponentInChildren<Weapon>();
             
@@ -75,7 +75,7 @@ namespace Scenes.Jordan.Scripts
 
         private void Dead()
         {
-            Animator.Play(Variables.DeadAnimName);
+            animator.Play(Variables.DeadAnimName);
         }
         #endregion
         
@@ -92,9 +92,9 @@ namespace Scenes.Jordan.Scripts
         {
             UpdateCounters(true);
             
-            IsActive = true;
+            isActive = true;
             
-            Animator.Play(Variables.AttackAnimName);
+            animator.Play(Variables.AttackAnimName);
             
             _weapon.Shoot();
         }
@@ -103,23 +103,23 @@ namespace Scenes.Jordan.Scripts
         {
             UpdateCounters(false);
             
-            IsActive = true;
+            isActive = true;
             
-            Animator.Play(Variables.DodgeAnimName);
+            animator.Play(Variables.DodgeAnimName);
         }
         
         protected virtual void EnemyActions()
         {
-            if (IsActive) return;
+            if (isActive) return;
             
             if(_dodgeCount == maxActionRepetition) Attack();
-            else if(AttackCount == maxActionRepetition) Dodge();
+            else if(attackCount == maxActionRepetition) Dodge();
             else RandomAction();
         }
         #endregion
 
         #region AnimationEvent
-        [UsedImplicitly] private void EndAnimation() => IsActive = false;
+        [UsedImplicitly] private void EndAnimation() => isActive = false;
         [UsedImplicitly] private void DestroyWhenDead() => Destroy(gameObject);
         #endregion
         
@@ -129,11 +129,11 @@ namespace Scenes.Jordan.Scripts
             if (isAttack)
             {
                 _dodgeCount = Variables.ResetCounter;
-                AttackCount++;
+                attackCount++;
             }
             else
             {
-                AttackCount = Variables.ResetCounter;
+                attackCount = Variables.ResetCounter;
                 _dodgeCount++;
             }
         }
@@ -141,7 +141,7 @@ namespace Scenes.Jordan.Scripts
         protected void ResetCounters()
         {
             _dodgeCount = Variables.ResetCounter;
-            AttackCount = Variables.ResetCounter;
+            attackCount = Variables.ResetCounter;
         }
         #endregion
 
@@ -162,7 +162,7 @@ namespace Scenes.Jordan.Scripts
 
         private void IsPlayerDead()
         {
-            if (IsDead) _currentState = State.Dead;
+            if (isDead) _currentState = State.Dead;
         }
         #endregion
     }

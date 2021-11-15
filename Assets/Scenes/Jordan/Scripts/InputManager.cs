@@ -1,8 +1,10 @@
 using UnityEngine;
 
+namespace Scenes.Jordan.Scripts
+{
     public class InputManager : MonoBehaviour
     {
-        public static bool UpInput, RightInput, DownInput, LeftInput;
+        public static bool upInput, rightInput, downInput, leftInput;
         
         private PlayerControls _playerControls;
 
@@ -34,17 +36,18 @@ using UnityEngine;
 
         private void GetButtonsDown()
         {
-            _playerControls.ActionKey.Up.started += i => UpInput = true;
-            _playerControls.ActionKey.Right.started += i => RightInput = true;
-            _playerControls.ActionKey.Down.started += i => DownInput = true;
-            _playerControls.ActionKey.Left.started += i => LeftInput = true;
+            _playerControls.ActionKey.Up.started += i => upInput = true;
+            _playerControls.ActionKey.Right.started += i => rightInput = true;
+            _playerControls.ActionKey.Down.started += i => downInput = true;
+            _playerControls.ActionKey.Left.started += i => leftInput = true;
         }
 
         private static void ResetButtons()
         {
-            UpInput = false;
-            RightInput = false;
-            DownInput = false;
-            LeftInput = false;
+            upInput = false;
+            rightInput = false;
+            downInput = false;
+            leftInput = false;
         }
     }
+}
