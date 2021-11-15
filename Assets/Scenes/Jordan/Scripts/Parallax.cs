@@ -9,12 +9,13 @@ namespace Scenes.Jordan.Scripts
         [SerializeField] private float[] scrollSpeed;
         
         [SerializeField] private GameObject[] layers;
+        [SerializeField] private GameObject layers3D;
 
-        private Rigidbody _playerRb;
+        private Rigidbody2D _playerRb;
 
         private void Awake()
         {
-            _playerRb = GameObject.FindGameObjectWithTag(Variables.PlayerTag).GetComponent<Rigidbody>();
+            _playerRb = GameObject.FindGameObjectWithTag(Variables.PlayerTag).GetComponent<Rigidbody2D>();
         }
         
         private void FixedUpdate()
@@ -22,6 +23,7 @@ namespace Scenes.Jordan.Scripts
             //_playerRb.velocity = new Vector3(10f, 0, 0);
             
             Parallax2D();
+            Parallax3D();
         }
 
         private void Parallax2D()
@@ -34,6 +36,11 @@ namespace Scenes.Jordan.Scripts
                 
                 currentLayerMaterial.SetTextureOffset(Variables.LayersTextureName, new Vector2(offset, 0));
             }
+        }
+
+        private void Parallax3D()
+        {
+            layers3D.transform.position -= new Vector3(globalScrollSpeed /* _playerRb.velocity.x*/, 0, 0) ;
         }
     }
 }

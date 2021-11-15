@@ -1,52 +1,29 @@
-using System;
 using UnityEngine;
 
 namespace Scenes.Jordan.Scripts
 {
     public class Weapon : MonoBehaviour
     {
-        [Header("Bullets")]
-        [SerializeField] private GameObject assaultRiffleBullet;
-        [SerializeField] private GameObject shotgunBullet;
-        [SerializeField] private GameObject laserBullet;
+        [SerializeField] private int distance = 5;
+        [SerializeField] private float speed = 20f;
         
-        [Space(20)]
-        [SerializeField] private WeaponType weaponType;
-        
+        [SerializeField] private GameObject bullet;
+
         [SerializeField] private bool isPlayer;
 
-        private GameObject _bullet;
-        
         private Quaternion _bulletRotation;
-        
-        private enum WeaponType
-        {
-            AssaultRiffle,
-            Shotgun,
-            Laser
-        }
-
-        private void Awake()
-        {
-            _bullet = weaponType switch
-            {
-                WeaponType.AssaultRiffle => assaultRiffleBullet,
-                WeaponType.Shotgun => shotgunBullet,
-                WeaponType.Laser => laserBullet,
-                _ => throw new ArgumentOutOfRangeException()
-            };
-        }
 
         private void Update()
         {
-            //if (isPlayer && Input.GetKeyDown(KeyCode.Space)) Shoot();
+            if (isPlayer && InputManager.upInput) Shoot();
         }
 
         public void Shoot()
         {
             if (!isPlayer) _bulletRotation = Quaternion.Euler(0, 180f, 0f);
 
-            Instantiate(_bullet, transform.position, _bulletRotation, transform);
+            var currentBullet = Instantiate(bullet, transform.position, _bulletRotation, transform).GetComponent<Bullet>();
+            currentBullet.Initialize(speed, distance, isPlayer);
         }
     }
 }
