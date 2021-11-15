@@ -328,6 +328,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1093278203
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1093278204}
+  - component: {fileID: 1093278205}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Player
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1093278204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093278203}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.468, y: -0.272, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1873421470}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1093278205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1093278203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ddb504b9bb490f4ab27b68802e530d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assaultRiffleBullet: {fileID: 6785467492111029205, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
+  shotgunBullet: {fileID: 5670853201290189631, guid: 340214b9ce0c6974f8d4cfe8475a9d9d, type: 3}
+  laserBullet: {fileID: 0}
+  weaponType: 0
+  isPlayer: 1
 --- !u!1 &1380868260
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +545,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1873421470 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5799427618019358928, guid: 58b7275a88d38314fac419830bae97a5, type: 3}
+  m_PrefabInstance: {fileID: 5799427618797788238}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6588385596145877
 PrefabInstance:
   m_ObjectHideFlags: 0
