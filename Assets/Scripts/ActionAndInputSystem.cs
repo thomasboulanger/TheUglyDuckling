@@ -16,10 +16,12 @@ public class ActionAndInputSystem : Entity
     private bool _delayAfterCombo;
     private int _afterComboTimer;
     private int _afkTimer;
+    private Animator _animator;
     
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
