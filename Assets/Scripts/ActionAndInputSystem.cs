@@ -9,6 +9,7 @@ public class ActionAndInputSystem : Entity
     public AudioClip clipLeft;
     public AudioClip clipRight;
     public List<string> comboList = new List<string>();
+    public float speed = 1f;
 
     private AudioSource _audioSource;
     private bool _aperture;
@@ -17,11 +18,32 @@ public class ActionAndInputSystem : Entity
     private int _afterComboTimer;
     private int _afkTimer;
     private Animator _animator;
+    private bool _animIdle, _animWalkForward, _animWalkBackward, _animAttack, _animSpecialAttack, _animIsDead;
+    //private float _stateTimer;
+    private Rigidbody2D _rb2D;
+    private enum State
+    {
+        Idle,
+        WalkForward,
+        WalkBackward,
+        Attack,
+        SpecialAttack,
+        IsDead
+    }
+
+    private State currentState = State.Idle;
     
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        _rb2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _animator.SetBool("Idle",_animIdle);
+        _animator.SetBool("WalkForward",_animWalkForward);
+        _animator.SetBool("WalkBackward",_animWalkBackward);
+        _animator.SetBool("Attack",_animAttack);
+        _animator.SetBool("SpecialAttack",_animSpecialAttack);
+        _animator.SetBool("IsDead",_animIsDead);
     }
 
     void Update()
@@ -46,6 +68,73 @@ public class ActionAndInputSystem : Entity
         if (_afkTimer >= 2)
         {
             _combo = "";
+        }
+
+        switch (currentState)
+        {
+            case State.Idle:
+                _animIdle = true;
+                _rb2D.velocity = Vector2.zero;
+                break;
+            case State.WalkForward:
+                if (_delayAfterCombo)
+                {
+                    _animWalkForward = true;
+                    _rb2D.velocity = Vector2.right * speed;
+                }
+                else
+                {
+                    _animWalkForward = false;
+                    currentState = State.Idle;
+                }
+                break;
+            
+            case State.WalkBackward:
+                if (_delayAfterCombo)
+                {
+                    _animWalkBackward = true;
+                    //a définir la retraite plus tard
+                    _rb2D.velocity = -Vector2.right * speed;
+                }
+                else
+                {
+                    _animWalkBackward = false;
+                    currentState = State.Idle;
+                }
+                break;
+            
+            case State.Attack:
+                if (_delayAfterCombo)
+                {
+                    _animAttack = true;
+                   //shoot
+                }
+                else
+                {
+                    _animAttack = false;
+                    currentState = State.Idle;
+                }
+                break;
+            
+            case State.SpecialAttack:
+                if (_delayAfterCombo)
+                {
+                    _animSpecialAttack = true;
+                   // special shoot
+                }
+                else
+                {
+                    _animSpecialAttack = false;
+                    currentState = State.Idle;
+                }
+                break;
+            
+            case State.IsDead:
+                //do the dead
+                break;
+            default:
+                Debug.Log("ton switch deconne");
+                break;
         }
         
         if (InputManager.upInput)
@@ -113,22 +202,18 @@ public class ActionAndInputSystem : Entity
             
             if (_combo == comboList[0])
             {
-                BeatManager.stacks++;
                 Avancer();
             }
             else if (_combo == comboList[1])
             {
-                BeatManager.stacks++;
                 Attaquer();
             }
             else if (_combo == comboList[2])
             {
-                BeatManager.stacks++;
                 Retraite();
             }
             else if (_combo == comboList[3])
             {
-                BeatManager.stacks++;
                 CoupSpecial();
             }
         }
@@ -137,28 +222,35 @@ public class ActionAndInputSystem : Entity
     public void Avancer()
     {
         OnCombo();
+        currentState = State.WalkForward;
     }
     public void Attaquer()
     {
         OnCombo();
+        currentState = State.Attack;
     }
     public void Retraite()
     {
         OnCombo();
+        currentState = State.WalkBackward;
     }
     public void CoupSpecial()
     {
         OnCombo();
+        currentState = State.SpecialAttack;
     }
     
     private void OnCombo()
     {
         _combo = "";
         _delayAfterCombo = true;
+        BeatManager.stacks++;
+        _animIdle = false;
     }
     private void BreakCombo()
     {
         BeatManager.stacks = 0;
         _combo = "";
+        _delayAfterCombo = false;
     }
 }
