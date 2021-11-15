@@ -34,22 +34,22 @@ namespace Scenes.Jordan.Scripts
         protected void Reload()
         {
             ResetCounters();
-            Animator.Play(Variables.ReloadAnimName);
+            animator.Play(Variables.ReloadAnimName);
         }
         
         protected void Rest()
         {
             ResetCounters();
-            Animator.Play(Variables.RestAnimName);
+            animator.Play(Variables.RestAnimName);
         }
         
         private void Attack(int attackIndex)
         {
             UpdateCounters(true);
             
-            IsActive = true;
+            isActive = true;
             
-            Animator.Play(Variables.AttackAnimName + attackIndex);
+            animator.Play(Variables.AttackAnimName + attackIndex);
         }
     }
 }

@@ -4,7 +4,7 @@ namespace Scenes.Jordan.Scripts
 {
     public abstract class Entity : MonoBehaviour
     {
-        protected bool IsDead;
+        protected bool isDead;
         
         [SerializeField] private int health;
 
@@ -15,7 +15,7 @@ namespace Scenes.Jordan.Scripts
             {
                 health = value;
                 
-                if(health <= Variables.HealthToBeDead) IsDead = true;
+                if(health <= Variables.HealthToBeDead) isDead = true;
             }
         }
         

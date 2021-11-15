@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Scenes.Jordan.Scripts;
 using UnityEngine;
 
 public class ActionAndInputSystem : MonoBehaviour
@@ -45,7 +46,7 @@ public class ActionAndInputSystem : MonoBehaviour
             _combo = "";
         }
         
-        if (InputManager.UpInput)
+        if (InputManager.upInput)
         {
             _audioSource.PlayOneShot(clipUp);
             if (_delayAfterCombo || !_aperture)
@@ -59,7 +60,7 @@ public class ActionAndInputSystem : MonoBehaviour
             }
         }
 
-        if (InputManager.DownInput)
+        if (InputManager.downInput)
         {
             _audioSource.PlayOneShot(clipDown);
             if (_delayAfterCombo || !_aperture)
@@ -73,7 +74,7 @@ public class ActionAndInputSystem : MonoBehaviour
             }
         }
 
-        if (InputManager.LeftInput)
+        if (InputManager.leftInput)
         {
             _audioSource.PlayOneShot(clipLeft);
             if (_delayAfterCombo || !_aperture)
@@ -87,7 +88,7 @@ public class ActionAndInputSystem : MonoBehaviour
             }
         }
 
-        if (InputManager.RightInput)
+        if (InputManager.rightInput)
         {
             _audioSource.PlayOneShot(clipRight);
             if (_delayAfterCombo || !_aperture)

@@ -1138,8 +1138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddb504b9bb490f4ab27b68802e530d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  assaultRiffleBullet: {fileID: 0}
-  shotgunBullet: {fileID: 0}
+  assaultRiffleBullet: {fileID: 6785467492111029205, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
+  shotgunBullet: {fileID: 5670853201290189631, guid: 340214b9ce0c6974f8d4cfe8475a9d9d, type: 3}
   laserBullet: {fileID: 0}
   weaponType: 0
   isPlayer: 0
