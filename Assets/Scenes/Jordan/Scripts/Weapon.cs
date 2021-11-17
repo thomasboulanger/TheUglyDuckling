@@ -15,13 +15,13 @@ namespace Scenes.Jordan.Scripts
 
         private void Update()
         {
-            if (isPlayer && InputManager.upInput) Shoot();
+           // if (isPlayer && InputManager.upInput) Shoot();
         }
 
         public void Shoot()
         {
             if (!isPlayer) _bulletRotation = Quaternion.Euler(0, 180f, 0f);
-
+            
             var currentBullet = Instantiate(bullet, transform.position, _bulletRotation, transform).GetComponent<Bullet>();
             currentBullet.Initialize(speed, distance, isPlayer);
         }

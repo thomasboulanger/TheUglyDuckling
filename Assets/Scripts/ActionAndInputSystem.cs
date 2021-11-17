@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class ActionAndInputSystem : Entity
 {
+    public static bool isCameraFreezed = false;
+    public static Vector3 freezeCameraPos;
+
     public AudioClip clipUp;
     public AudioClip clipDown;
     public AudioClip clipLeft;
     public AudioClip clipRight;
     public List<string> comboList = new List<string>();
+    [Space]
     public float speed = 1f;
+    [Space]
 
     private AudioSource _audioSource;
     private bool _aperture;
@@ -19,8 +24,8 @@ public class ActionAndInputSystem : Entity
     private int _afkTimer;
     private Animator _animator;
     private bool _animIdle, _animWalkForward, _animWalkBackward, _animAttack, _animSpecialAttack, _animIsDead;
-    //private float _stateTimer;
     private Rigidbody2D _rb2D;
+    
     private enum State
     {
         Idle,
@@ -80,7 +85,7 @@ public class ActionAndInputSystem : Entity
                 if (_delayAfterCombo)
                 {
                     _animWalkForward = true;
-                    _rb2D.velocity = Vector2.right * speed;
+                    _rb2D.MovePosition(transform.position + Vector3.right * speed * Time.deltaTime);
                 }
                 else
                 {
@@ -94,11 +99,19 @@ public class ActionAndInputSystem : Entity
                 {
                     _animWalkBackward = true;
                     //a définir la retraite plus tard
-                    _rb2D.velocity = -Vector2.right * speed;
+                    if (_afterComboTimer <= 2)
+                    {
+                        _rb2D.MovePosition(transform.position - (Vector3.right * speed * Time.deltaTime) * 2f);
+                    }
+                    else
+                    {
+                        _rb2D.MovePosition(transform.position + (Vector3.right * speed * Time.deltaTime) * 2f);
+                    }
                 }
                 else
                 {
                     _animWalkBackward = false;
+                    isCameraFreezed = false;
                     currentState = State.Idle;
                 }
                 break;
@@ -232,6 +245,8 @@ public class ActionAndInputSystem : Entity
     public void Retraite()
     {
         OnCombo();
+        freezeCameraPos = transform.position;
+        isCameraFreezed = true;
         currentState = State.WalkBackward;
     }
     public void CoupSpecial()
