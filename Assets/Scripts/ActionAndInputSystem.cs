@@ -101,11 +101,11 @@ public class ActionAndInputSystem : Entity
                     //a définir la retraite plus tard
                     if (_afterComboTimer <= 2)
                     {
-                        _rb2D.MovePosition(transform.position - Vector3.right * speed * Time.deltaTime * 2f);
+                        _rb2D.MovePosition(transform.position - (Vector3.right * speed * Time.deltaTime) * 2f);
                     }
                     else
                     {
-                        _rb2D.MovePosition(transform.position + Vector3.right * speed * Time.deltaTime * 2f);
+                        _rb2D.MovePosition(transform.position + (Vector3.right * speed * Time.deltaTime) * 2f);
                     }
                 }
                 else
