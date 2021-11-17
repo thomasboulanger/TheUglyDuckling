@@ -13,6 +13,10 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
+        if (ActionAndInputSystem.isCameraFreezed)
+        {
+            Vector3 targetPosition = 
+        }
         Vector3 targetPosition = _target.transform.position + offset;
         transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed* Time.deltaTime);
     }
