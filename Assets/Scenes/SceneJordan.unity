@@ -456,7 +456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1539457567186727751, guid: 8ec70bb6591edaf4f9afa5f96c4c75d3, type: 3}
       propertyPath: m_UiScaleMode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1539457567186727751, guid: 8ec70bb6591edaf4f9afa5f96c4c75d3, type: 3}
       propertyPath: m_MatchWidthOrHeight
@@ -472,7 +472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1539457567186727752, guid: 8ec70bb6591edaf4f9afa5f96c4c75d3, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ec70bb6591edaf4f9afa5f96c4c75d3, type: 3}
