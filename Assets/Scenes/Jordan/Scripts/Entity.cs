@@ -2,35 +2,23 @@ using UnityEngine;
 
 namespace Scenes.Jordan.Scripts
 {
-    public class Entity : MonoBehaviour
+    public abstract class Entity : MonoBehaviour
     {
-        private bool _isDead;
+        protected bool isDead;
         
-        [Header("Stats")]
         [SerializeField] private int health;
-        [SerializeField] private int damage;
-        
-        private bool IsDead
-        {
-            set
-            {
-                _isDead = value;
-                
-                if(_isDead && !gameObject.CompareTag(Variables.PlayerTag)) Destroy(gameObject);
-            }
-        }
-        
-        private int Health
+
+        protected int Health
         {
             get => health;
-            set
+            private set
             {
                 health = value;
                 
-                if(health <= Variables.HealthToBeDead) IsDead = true;
+                if(health <= Variables.HealthToBeDead) isDead = true;
             }
         }
         
-        protected void Damage(Entity entity) => entity.Health -= damage;
+        public void TakeDamage(int damage) => Health -= damage;
     }
 }

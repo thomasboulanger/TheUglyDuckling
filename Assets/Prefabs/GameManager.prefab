@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6588385512346870}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47,9 +47,15 @@ MonoBehaviour:
   BPM1: 91
   BPM2: 105
   BPM3: 123
-  Music1: {fileID: 8300000, guid: 439f48c7b339c444eb97b6bd59831b6f, type: 3}
+  Music0: {fileID: 8300000, guid: d481864a7872d584d90bc92f84c23bca, type: 3}
+  Music1: {fileID: 8300000, guid: e7ad088afe4ca4a41a1141f9d0782cbe, type: 3}
   Music2: {fileID: 8300000, guid: c94d4f776a3bf6c4cbe3fbf59cd66d52, type: 3}
-  Music3: {fileID: 8300000, guid: 708fd6b7486f63341b5b03c7c4100cfe, type: 3}
+  Music3: {fileID: 8300000, guid: 0ee9d521389895544a7dca8e185c47a3, type: 3}
+  percentMargin: 30
+  test1: {fileID: 0}
+  test2: {fileID: 0}
+  test3: {fileID: 0}
+  test4: {fileID: 0}
 --- !u!82 &6588385512346870
 AudioSource:
   m_ObjectHideFlags: 0
@@ -59,7 +65,7 @@ AudioSource:
   m_GameObject: {fileID: 6588385512346869}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1612913791634123452, guid: 660b617ae439ed64095c37e447a100ec, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
