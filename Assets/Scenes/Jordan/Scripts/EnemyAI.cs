@@ -165,5 +165,12 @@ namespace Scenes.Jordan.Scripts
             if (isDead) _currentState = State.Dead;
         }
         #endregion
+        
+        private void OnDrawGizmosSelected()
+        {
+            // Draw a yellow sphere at the transform's position
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawLine(transform.position, transform.position + new Vector3(-distanceDetection,0,0));
+        }
     }
 }
