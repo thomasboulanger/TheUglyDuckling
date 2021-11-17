@@ -6,6 +6,9 @@ public class CameraController : MonoBehaviour
     public float lerpSpeed;
     
     private GameObject _target;
+    private Vector3 _freezedPos;
+    private Vector3 _targetPosition;
+    
     void Start()
     {
         _target = GameObject.FindGameObjectWithTag("Player");
@@ -15,9 +18,12 @@ public class CameraController : MonoBehaviour
     {
         if (ActionAndInputSystem.isCameraFreezed)
         {
-            Vector3 targetPosition = 
+            _targetPosition = ActionAndInputSystem.freezeCameraPos + offset;
         }
-        Vector3 targetPosition = _target.transform.position + offset;
-        transform.position = Vector3.Lerp(transform.position, targetPosition, lerpSpeed* Time.deltaTime);
+        else
+        { 
+            _targetPosition = _target.transform.position + offset;
+        }
+        transform.position = Vector3.Lerp(transform.position, _targetPosition, lerpSpeed* Time.deltaTime);
     }
 }

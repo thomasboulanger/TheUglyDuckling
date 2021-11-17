@@ -5,7 +5,8 @@ using UnityEngine;
 public class ActionAndInputSystem : Entity
 {
     public static bool isCameraFreezed = false;
-    
+    public static Vector3 freezeCameraPos;
+
     public AudioClip clipUp;
     public AudioClip clipDown;
     public AudioClip clipLeft;
@@ -24,7 +25,7 @@ public class ActionAndInputSystem : Entity
     private Animator _animator;
     private bool _animIdle, _animWalkForward, _animWalkBackward, _animAttack, _animSpecialAttack, _animIsDead;
     private Rigidbody2D _rb2D;
-    private Vector3 freezeCameraPos;
+    
     private enum State
     {
         Idle,
@@ -84,7 +85,7 @@ public class ActionAndInputSystem : Entity
                 if (_delayAfterCombo)
                 {
                     _animWalkForward = true;
-                    _rb2D.velocity = Vector2.right * speed;
+                    _rb2D.MovePosition(transform.position + Vector3.right * speed * Time.deltaTime);
                 }
                 else
                 {
@@ -100,16 +101,17 @@ public class ActionAndInputSystem : Entity
                     //a définir la retraite plus tard
                     if (_afterComboTimer <= 2)
                     {
-                        _rb2D.velocity = -Vector2.right * speed * 2;
+                        _rb2D.MovePosition(transform.position - Vector3.right * speed * Time.deltaTime * 2f);
                     }
                     else
                     {
-                        _rb2D.velocity = Vector2.right * speed * 2;
+                        _rb2D.MovePosition(transform.position + Vector3.right * speed * Time.deltaTime * 2f);
                     }
                 }
                 else
                 {
                     _animWalkBackward = false;
+                    isCameraFreezed = false;
                     currentState = State.Idle;
                 }
                 break;
@@ -244,6 +246,7 @@ public class ActionAndInputSystem : Entity
     {
         OnCombo();
         freezeCameraPos = transform.position;
+        isCameraFreezed = true;
         currentState = State.WalkBackward;
     }
     public void CoupSpecial()
