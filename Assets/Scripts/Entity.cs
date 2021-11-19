@@ -1,24 +1,21 @@
 using UnityEngine;
 
-namespace Scenes.Jordan.Scripts
+public abstract class Entity : MonoBehaviour
 {
-    public abstract class Entity : MonoBehaviour
-    {
-        protected bool isDead;
+    protected bool isDead;
         
-        [SerializeField] private int health;
+    [SerializeField] private int health;
 
-        protected int Health
+    protected int Health
+    {
+        get => health;
+        private set
         {
-            get => health;
-            private set
-            {
-                health = value;
+            health = value;
                 
-                if(health <= Variables.HealthToBeDead) isDead = true;
-            }
+            if(health <= Variables.HealthToBeDead) isDead = true;
         }
-        
-        public void TakeDamage(int damage) => Health -= damage;
     }
+        
+    public void TakeDamage(int damage) => Health -= damage;
 }

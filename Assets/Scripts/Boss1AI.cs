@@ -1,13 +1,10 @@
-namespace Scenes.Jordan.Scripts
+public class Boss1AI : BossManager
 {
-    public class Boss1AI : BossManager
+    protected override void EnemyActions()
     {
-        protected override void EnemyActions()
-        {
-            if (isActive) return;
+        if (isActive) return;
             
-            if(attackCount == maxActionRepetition) Reload();
-            else RandomAction();
-        }
+        if(attackCount == maxActionRepetition) Reload();
+        else RandomAction();
     }
 }

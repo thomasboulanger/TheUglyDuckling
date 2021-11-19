@@ -1,55 +1,52 @@
 using UnityEngine;
 
-namespace Scenes.Jordan.Scripts
+public abstract class BossManager : EnemyAI
 {
-    public abstract class BossManager : EnemyAI
+    [SerializeField] protected int nbAttacks = 2;
+
+    protected override void RandomAction()
     {
-        [SerializeField] protected int nbAttacks = 2;
+        var randomIndex = Random.Range(1, Variables.NbActions + nbAttacks);
 
-        protected override void RandomAction()
+        RandomAttack(randomIndex);
+    }
+
+    protected void RandomAttack(int randomIndex)
+    {
+        for (var i = 1; i <= nbAttacks; i++)
         {
-            var randomIndex = Random.Range(1, Variables.NbActions + nbAttacks);
-
-            RandomAttack(randomIndex);
-        }
-
-        protected void RandomAttack(int randomIndex)
-        {
-            for (var i = 1; i <= nbAttacks; i++)
-            {
-                if (randomIndex != i) continue;
+            if (randomIndex != i) continue;
                 
-                Attack(randomIndex);
-                return;
-            }
-        }
-        
-        protected override void Attack()
-        {
-            var randomIndex = Random.Range(Variables.FirstAttackIndex, nbAttacks + 1);
-            
             Attack(randomIndex);
+            return;
         }
+    }
+        
+    protected override void Attack()
+    {
+        var randomIndex = Random.Range(Variables.FirstAttackIndex, nbAttacks + 1);
+            
+        Attack(randomIndex);
+    }
 
-        protected void Reload()
-        {
-            ResetCounters();
-            animator.Play(Variables.ReloadAnimName);
-        }
+    protected void Reload()
+    {
+        ResetCounters();
+        animator.Play(Variables.ReloadAnimName);
+    }
         
-        protected void Rest()
-        {
-            ResetCounters();
-            animator.Play(Variables.RestAnimName);
-        }
+    protected void Rest()
+    {
+        ResetCounters();
+        animator.Play(Variables.RestAnimName);
+    }
         
-        private void Attack(int attackIndex)
-        {
-            UpdateCounters(true);
+    private void Attack(int attackIndex)
+    {
+        UpdateCounters(true);
             
-            isActive = true;
+        isActive = true;
             
-            animator.Play(Variables.AttackAnimName + attackIndex);
-        }
+        animator.Play(Variables.AttackAnimName + attackIndex);
     }
 }
