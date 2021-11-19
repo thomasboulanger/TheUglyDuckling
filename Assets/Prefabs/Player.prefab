@@ -59,11 +59,11 @@ GameObject:
   - component: {fileID: 5799427618019358928}
   - component: {fileID: 5799427618019358930}
   - component: {fileID: 5799427618019358933}
-  - component: {fileID: 5799427618019358956}
   - component: {fileID: 5799427618019358958}
   - component: {fileID: 5799427618019358929}
   - component: {fileID: 5799427618019358959}
   - component: {fileID: 5799427618019358931}
+  - component: {fileID: 8575493137670708480}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -80,7 +80,7 @@ Transform:
   m_GameObject: {fileID: 5799427618019358932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.82, y: 0.75, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_Children:
   - {fileID: 5516217599216801409}
   m_Father: {fileID: 0}
@@ -126,15 +126,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: fa21f71b008c50341b8588ad2b499193, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f6f6d05cc85831d4298b2e95147f6a7e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 5, y: 5}
+  m_Size: {x: 10.8, y: 9.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &5799427618019358933
@@ -158,69 +158,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!60 &5799427618019358956
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5799427618019358932}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
-    newSize: {x: 5, y: 5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.81, y: -0.79999995}
-      - {x: 0.97999996, y: -0.59}
-      - {x: 1.0799999, y: -0.38}
-      - {x: 1.1, y: -0.26999998}
-      - {x: 1.13, y: -0.11}
-      - {x: 1.13, y: 0.13}
-      - {x: 1.1, y: 0.29}
-      - {x: 1.06, y: 0.42999998}
-      - {x: 0.96, y: 0.63}
-      - {x: 0.84, y: 0.78999996}
-      - {x: 0.64, y: 0.97999996}
-      - {x: 0.41, y: 1.09}
-      - {x: 0.26999998, y: 1.14}
-      - {x: 0.16, y: 1.17}
-      - {x: -0.17, y: 1.17}
-      - {x: -0.35999998, y: 1.13}
-      - {x: -0.51, y: 1.0699999}
-      - {x: -0.68, y: 0.97999996}
-      - {x: -0.76, y: 0.91999996}
-      - {x: -0.94, y: 0.74}
-      - {x: -1.04, y: 0.61}
-      - {x: -1.16, y: 0.32999998}
-      - {x: -1.1899999, y: 0.17999999}
-      - {x: -1.1899999, y: -0.11}
-      - {x: -1.15, y: -0.31}
-      - {x: -1.11, y: -0.45}
-      - {x: -1.02, y: -0.59999996}
-      - {x: -0.90999997, y: -0.74}
-      - {x: -0.78999996, y: -0.87}
-      - {x: -0.64, y: -0.97999996}
-      - {x: -0.45, y: -1.0699999}
-      - {x: -0.32999998, y: -1.12}
-      - {x: -0.17999999, y: -1.14}
-      - {x: -0.099999994, y: -1.15}
-      - {x: 0.14, y: -1.15}
-      - {x: 0.38, y: -1.09}
-      - {x: 0.57, y: -0.98999995}
-      - {x: 0.65999997, y: -0.93}
 --- !u!114 &5799427618019358958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,6 +308,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &8575493137670708480
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5799427618019358932}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.61, y: 0.1}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 10.8, y: 9.2}
+    newSize: {x: 10.8, y: 9.2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.69, y: 7.05}
+  m_EdgeRadius: 0
 --- !u!1 &8182043776702051943
 GameObject:
   m_ObjectHideFlags: 0
