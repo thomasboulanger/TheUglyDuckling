@@ -15,7 +15,7 @@ namespace Scenes.Jordan.Scripts
 
         private void Update()
         {
-           // if (isPlayer && InputManager.upInput) Shoot();
+           if (isPlayer && InputManager.upInput) Shoot();
         }
 
         public void Shoot()
