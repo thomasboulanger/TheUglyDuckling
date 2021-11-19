@@ -129,5 +129,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4784137d1fce9d4fa74ef21bdfd69be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 13, y: 5, z: -17}
+  offset: {x: 12, y: 5, z: -17}
   lerpSpeed: 2

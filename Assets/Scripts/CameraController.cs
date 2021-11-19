@@ -18,7 +18,7 @@ public class CameraController : MonoBehaviour
     {
         if (ActionAndInputSystem.isCameraFreezed)
         {
-            _targetPosition = ActionAndInputSystem.freezeCameraPos + offset;
+            _targetPosition = new Vector3(ActionAndInputSystem.freezeCameraPos.x,ActionAndInputSystem.freezeCameraPos.y,0f)  + offset;
         }
         else
         { 

@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Security.AccessControl;
 using Scenes.Jordan.Scripts;
 using UnityEngine;
 
 public class ActionAndInputSystem : Entity
 {
     public static bool isCameraFreezed = false;
-    public static Vector3 freezeCameraPos;
+    public static Vector2 freezeCameraPos;
 
     public AudioClip clipUp;
     public AudioClip clipDown;
@@ -13,7 +14,7 @@ public class ActionAndInputSystem : Entity
     public AudioClip clipRight;
     public List<string> comboList = new List<string>();
     [Space]
-    public float speed = 1f;
+    public float speed;
     [Space]
 
     private AudioSource _audioSource;
@@ -25,7 +26,9 @@ public class ActionAndInputSystem : Entity
     private Animator _animator;
     private bool _animIdle, _animWalkForward, _animWalkBackward, _animAttack, _animSpecialAttack, _animIsDead;
     private Rigidbody2D _rb2D;
-    
+    private float lerpValue = 0f;
+    private bool _trigger;
+
     private enum State
     {
         Idle,
@@ -53,6 +56,7 @@ public class ActionAndInputSystem : Entity
 
     void Update()
     {
+        
         _aperture = BeatManager.aperture;
 
         if (BeatManager.beatTimer >= BeatManager.beatInterval)
@@ -85,7 +89,7 @@ public class ActionAndInputSystem : Entity
                 if (_delayAfterCombo)
                 {
                     _animWalkForward = true;
-                    _rb2D.MovePosition(transform.position + Vector3.right * speed * Time.deltaTime);
+                    _rb2D.MovePosition(new Vector2(transform.position.x, transform.position.y) + Vector2.right * speed * Time.deltaTime);
                 }
                 else
                 {
@@ -97,21 +101,33 @@ public class ActionAndInputSystem : Entity
             case State.WalkBackward:
                 if (_delayAfterCombo)
                 {
-                    _animWalkBackward = true;
-                    //a définir la retraite plus tard
+                    if (lerpValue > 1f)
+                    {
+                        lerpValue = 1f;
+                    }
                     if (_afterComboTimer <= 2)
                     {
-                        _rb2D.MovePosition(transform.position - (Vector3.right * speed * Time.deltaTime) * 2f);
+                        _animWalkBackward = true;
+
+                        _rb2D.MovePosition(Vector2.Lerp(freezeCameraPos,
+                            new Vector2(freezeCameraPos.x - 6.5f, freezeCameraPos.y),
+                            lerpValue += Time.deltaTime /.4f));
                     }
                     else
                     {
-                        _rb2D.MovePosition(transform.position + (Vector3.right * speed * Time.deltaTime) * 2f);
+                        _animWalkBackward = false;
+                        _animWalkForward = true;
+                        _rb2D.MovePosition(Vector2.Lerp(freezeCameraPos,
+                            new Vector2(freezeCameraPos.x - 6.5f, freezeCameraPos.y),
+                            lerpValue -= Time.deltaTime /.4f));
                     }
                 }
                 else
                 {
-                    _animWalkBackward = false;
+                    _animWalkForward = false;
                     isCameraFreezed = false;
+                    _trigger = true;
+                    lerpValue = 0f;
                     currentState = State.Idle;
                 }
                 break;
