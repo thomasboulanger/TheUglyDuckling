@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Security.AccessControl;
 using Scenes.Jordan.Scripts;
 using UnityEngine;
 
@@ -28,6 +27,7 @@ public class ActionAndInputSystem : Entity
     private Rigidbody2D _rb2D;
     private float lerpValue = 0f;
     private bool _trigger;
+    private float _fireRateTimer;
 
     private enum State
     {
@@ -40,25 +40,17 @@ public class ActionAndInputSystem : Entity
     }
 
     private State currentState = State.Idle;
-    
     void Start()
     {
         _audioSource = GetComponent<AudioSource>();
         _rb2D = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
-        _animator.SetBool("Idle",_animIdle);
-        _animator.SetBool("WalkForward",_animWalkForward);
-        _animator.SetBool("WalkBackward",_animWalkBackward);
-        _animator.SetBool("Attack",_animAttack);
-        _animator.SetBool("SpecialAttack",_animSpecialAttack);
-        _animator.SetBool("IsDead",_animIsDead);
     }
 
     void Update()
     {
-        
         _aperture = BeatManager.aperture;
-
+        
         if (BeatManager.beatTimer >= BeatManager.beatInterval)
         {
             _afkTimer++;
@@ -83,17 +75,20 @@ public class ActionAndInputSystem : Entity
         {
             case State.Idle:
                 _animIdle = true;
+                _animator.SetBool("Idle",_animIdle);
                 _rb2D.velocity = Vector2.zero;
                 break;
             case State.WalkForward:
                 if (_delayAfterCombo)
                 {
                     _animWalkForward = true;
+                    _animator.SetBool("WalkForward",_animWalkForward);
                     _rb2D.MovePosition(new Vector2(transform.position.x, transform.position.y) + Vector2.right * speed * Time.deltaTime);
                 }
                 else
                 {
                     _animWalkForward = false;
+                    _animator.SetBool("WalkForward",_animWalkForward);
                     currentState = State.Idle;
                 }
                 break;
@@ -105,10 +100,10 @@ public class ActionAndInputSystem : Entity
                     {
                         lerpValue = 1f;
                     }
-                    if (_afterComboTimer <= 2)
+                    if (_afterComboTimer <= 1)
                     {
                         _animWalkBackward = true;
-
+                        _animator.SetBool("WalkBackward",_animWalkBackward);
                         _rb2D.MovePosition(Vector2.Lerp(freezeCameraPos,
                             new Vector2(freezeCameraPos.x - 6.5f, freezeCameraPos.y),
                             lerpValue += Time.deltaTime /.4f));
@@ -116,7 +111,9 @@ public class ActionAndInputSystem : Entity
                     else
                     {
                         _animWalkBackward = false;
+                        _animator.SetBool("WalkBackward",_animWalkBackward);
                         _animWalkForward = true;
+                        _animator.SetBool("WalkForward",_animWalkForward);
                         _rb2D.MovePosition(Vector2.Lerp(freezeCameraPos,
                             new Vector2(freezeCameraPos.x - 6.5f, freezeCameraPos.y),
                             lerpValue -= Time.deltaTime /.4f));
@@ -125,6 +122,7 @@ public class ActionAndInputSystem : Entity
                 else
                 {
                     _animWalkForward = false;
+                    _animator.SetBool("WalkForward",_animWalkForward);
                     isCameraFreezed = false;
                     _trigger = true;
                     lerpValue = 0f;
@@ -134,13 +132,21 @@ public class ActionAndInputSystem : Entity
             
             case State.Attack:
                 if (_delayAfterCombo)
-                {
+                { 
                     _animAttack = true;
-                   //shoot
+                    _animator.SetBool("Attack",_animAttack);
+                    _fireRateTimer += Time.deltaTime;
+                    float fireRate = transform.GetChild(0).GetChild(0).GetComponent<Weapon>().fireRate;
+                   if (_fireRateTimer >= fireRate)
+                    {
+                        _fireRateTimer -= fireRate;
+                        transform.GetChild(0).GetChild(0).GetComponent<Weapon>().Shoot();
+                    }
                 }
                 else
                 {
                     _animAttack = false;
+                    _animator.SetBool("Attack",_animAttack);
                     currentState = State.Idle;
                 }
                 break;
@@ -149,17 +155,21 @@ public class ActionAndInputSystem : Entity
                 if (_delayAfterCombo)
                 {
                     _animSpecialAttack = true;
-                   // special shoot
+                    _animator.SetBool("SpecialAttack",_animSpecialAttack);
+                    // special shoot
                 }
                 else
                 {
                     _animSpecialAttack = false;
+                    _animator.SetBool("SpecialAttack",_animSpecialAttack);
                     currentState = State.Idle;
                 }
                 break;
             
             case State.IsDead:
                 //do the dead
+                _animIsDead = true;
+                _animator.SetBool("IsDead",_animIsDead);
                 break;
             default:
                 Debug.Log("ton switch deconne");
@@ -277,6 +287,7 @@ public class ActionAndInputSystem : Entity
         _delayAfterCombo = true;
         BeatManager.stacks++;
         _animIdle = false;
+        _animator.SetBool("Idle",_animIdle);
     }
     private void BreakCombo()
     {
