@@ -43,7 +43,7 @@ Camera:
   m_GameObject: {fileID: 3880817205229213326}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 4
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -129,5 +129,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4784137d1fce9d4fa74ef21bdfd69be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 12, y: 5, z: -17}
+  offset: {x: 17, y: 7.5, z: -23}
   lerpSpeed: 2
