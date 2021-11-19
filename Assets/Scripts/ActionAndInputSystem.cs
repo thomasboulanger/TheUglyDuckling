@@ -135,11 +135,11 @@ public class ActionAndInputSystem : Entity
                     _animAttack = true;
                     _animator.SetBool("Attack",_animAttack);
                     _fireRateTimer += Time.deltaTime;
-                    float fireRate = transform.GetChild(0).GetChild(0).GetComponent<Weapon>().fireRate;
+                    float fireRate = transform.GetComponentInChildren<Weapon>().fireRate;
                    if (_fireRateTimer >= fireRate)
                     {
                         _fireRateTimer -= fireRate;
-                        transform.GetChild(0).GetChild(0).GetComponent<Weapon>().Shoot();
+                        transform.GetComponentInChildren<Weapon>().Shoot();
                     }
                 }
                 else
@@ -147,6 +147,7 @@ public class ActionAndInputSystem : Entity
                     _animAttack = false;
                     _animator.SetBool("Attack",_animAttack);
                     currentState = State.Idle;
+                    transform.GetComponentInChildren<Weapon>().fireRate = 0f;
                 }
                 break;
             

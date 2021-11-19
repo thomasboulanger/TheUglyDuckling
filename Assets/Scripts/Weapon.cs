@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private float fireRate = 0.18f;
+    public float fireRate;
+    
     [SerializeField] private int distance = 20;
     [SerializeField] private float speed = 20f;
     [SerializeField] private bool isPlayer;
@@ -11,7 +12,7 @@ public class Weapon : MonoBehaviour
     
     private Quaternion _bulletRotation;
 
-    //firerate riffle 0.18f, shotgun 0.8f, laser 1.5f
+    //firerate riffle 0.18f, shotgun 0.1f, laser 1.5f
 
     public void Shoot()
     {

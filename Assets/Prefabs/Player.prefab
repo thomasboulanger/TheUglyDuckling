@@ -46,8 +46,8 @@ MonoBehaviour:
   fireRate: 0
   distance: 22
   speed: 20
-  bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
   isPlayer: 1
+  bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
 --- !u!1 &5799427618019358932
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +134,7 @@ SpriteRenderer:
   m_Size: {x: 5, y: 5}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &5799427618019358933
@@ -243,7 +243,7 @@ MonoBehaviour:
   - DDGD
   - BBDG
   - HHGD
-  speed: 7
+  speed: 10
 --- !u!82 &5799427618019358929
 AudioSource:
   m_ObjectHideFlags: 0
