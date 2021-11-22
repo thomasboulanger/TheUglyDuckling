@@ -20,7 +20,7 @@ public class EnemyAI : Entity
         
     private Transform _player;
 
-    private Weapon _weapon;
+    protected Weapon weapon;
 
     private enum State
     {
@@ -29,11 +29,11 @@ public class EnemyAI : Entity
         Dead
     }
 
-    private void Awake()
+    protected void Awake()
     {
         animator = GetComponent<Animator>();
 
-        _weapon = GetComponentInChildren<Weapon>();
+        weapon = GetComponentInChildren<Weapon>();
             
         _player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).transform;
             
@@ -93,8 +93,8 @@ public class EnemyAI : Entity
         isActive = true;
             
         animator.Play(Variables.AttackAnimName);
-            
-        _weapon.Shoot();
+        
+        weapon.Shoot();
     }
         
     protected void Dodge()

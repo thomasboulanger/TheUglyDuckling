@@ -82,7 +82,7 @@ public class ActionAndInputSystem : Entity
                 {
                     _animWalkForward = true;
                     _animator.SetBool("WalkForward",_animWalkForward);
-                    _rb2D.MovePosition(new Vector2(transform.position.x, transform.position.y) + Vector2.right * speed * Time.deltaTime);
+                    _rb2D.velocity =  Vector2.right * speed /* Time.deltaTime*/;
                 }
                 else
                 {
@@ -147,7 +147,7 @@ public class ActionAndInputSystem : Entity
                     _animAttack = false;
                     _animator.SetBool("Attack",_animAttack);
                     currentState = State.Idle;
-                    transform.GetComponentInChildren<Weapon>().fireRate = 0f;
+                    _fireRateTimer = 0f;
                 }
                 break;
             
