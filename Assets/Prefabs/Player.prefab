@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddb504b9bb490f4ab27b68802e530d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0
+  fireRate: 0.18
   distance: 22
   speed: 20
   isPlayer: 1
