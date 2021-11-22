@@ -6,7 +6,7 @@ public abstract class Entity : MonoBehaviour
         
     [SerializeField] private int health;
 
-    protected int Health
+    public int Health
     {
         get => health;
         private set

@@ -16,7 +16,7 @@ public class Weapon : MonoBehaviour
 
     public void Shoot()
     {
-        _bulletRotation = !isPlayer ? Quaternion.Euler(0f, 0f, 180f + Random.Range(-2f,8f)) : Quaternion.Euler(0f, 0f, Random.Range(-2f,8f));
+        _bulletRotation = !isPlayer ? Quaternion.Euler(0f, 0f, 180f + Random.Range(-2f,6f)) : Quaternion.Euler(0f, 0f, Random.Range(-2f,6f));
             
         var currentBullet = Instantiate(bullet, transform.position, _bulletRotation).GetComponent<Bullet>();
         currentBullet.Initialize(speed, distance, isPlayer);
