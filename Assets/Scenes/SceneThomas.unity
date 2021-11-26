@@ -1980,6 +1980,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pulsePanel: {fileID: 1539457566526482277}
+  cadrePanel: {fileID: 855675768}
+  transparentSquare: {fileID: 21300000, guid: ad636ef0923348b4b900bb70280a8b89, type: 3}
+  inputUp: {fileID: 21300000, guid: d42dd9fa61e7120408f22f21c6f7af33, type: 3}
+  inputBottom: {fileID: 21300000, guid: 5f77e3e1b46def648ae1501b06749a6b, type: 3}
+  inputLeft: {fileID: 21300000, guid: 58b8a63f2a881c7478042d85c8db2d1d, type: 3}
+  inputRight: {fileID: 21300000, guid: e795718b23facce41a4b151e10ca171d, type: 3}
   healthSlider: {fileID: 0}
   specialHitSlider: {fileID: 0}
 --- !u!114 &1539457566487582196
