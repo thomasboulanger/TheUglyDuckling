@@ -45,7 +45,13 @@ public class PlayerManager : Entity
     }
 
     private State _currentState = State.Idle;
-    
+    private static readonly int Idle = Animator.StringToHash("Idle");
+    private static readonly int WalkForward = Animator.StringToHash("WalkForward");
+    private static readonly int WalkBackward = Animator.StringToHash("WalkBackward");
+    private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int SpecialAttack = Animator.StringToHash("SpecialAttack");
+    private static readonly int IsDead = Animator.StringToHash("IsDead");
+
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -83,20 +89,20 @@ public class PlayerManager : Entity
         {
             case State.Idle:
                 _animIdle = true;
-                _animator.SetBool("Idle",_animIdle);
+                _animator.SetBool(Idle,_animIdle);
                 _rb2D.velocity = Vector2.zero;
                 break;
             case State.WalkForward:
                 if (_delayAfterCombo)
                 {
                     _animWalkForward = true;
-                    _animator.SetBool("WalkForward",_animWalkForward);
+                    _animator.SetBool(WalkForward,_animWalkForward);
                     _rb2D.velocity =  Vector2.right * speed /* Time.deltaTime*/;
                 }
                 else
                 {
                     _animWalkForward = false;
-                    _animator.SetBool("WalkForward",_animWalkForward);
+                    _animator.SetBool(WalkForward,_animWalkForward);
                     _currentState = State.Idle;
                 }
                 break;
@@ -111,7 +117,7 @@ public class PlayerManager : Entity
                     if (_afterComboTimer <= 1)
                     {
                         _animWalkBackward = true;
-                        _animator.SetBool("WalkBackward",_animWalkBackward);
+                        _animator.SetBool(WalkBackward,_animWalkBackward);
                         _rb2D.MovePosition(Vector2.Lerp(freezeCameraPos,
                             new Vector2(freezeCameraPos.x - 6.5f, freezeCameraPos.y),
                             _lerpValue += Time.deltaTime /.4f));
@@ -119,9 +125,9 @@ public class PlayerManager : Entity
                     else
                     {
                         _animWalkBackward = false;
-                        _animator.SetBool("WalkBackward",_animWalkBackward);
+                        _animator.SetBool(WalkBackward,_animWalkBackward);
                         _animWalkForward = true;
-                        _animator.SetBool("WalkForward",_animWalkForward);
+                        _animator.SetBool(WalkForward,_animWalkForward);
                         _rb2D.MovePosition(Vector2.Lerp(freezeCameraPos,
                             new Vector2(freezeCameraPos.x - 6.5f, freezeCameraPos.y),
                             _lerpValue -= Time.deltaTime /.4f));
@@ -130,7 +136,7 @@ public class PlayerManager : Entity
                 else
                 {
                     _animWalkForward = false;
-                    _animator.SetBool("WalkForward",_animWalkForward);
+                    _animator.SetBool(WalkForward,_animWalkForward);
                     isCameraFreezed = false;
                     _trigger = true;
                     _lerpValue = 0f;
@@ -142,7 +148,7 @@ public class PlayerManager : Entity
                 if (_delayAfterCombo)
                 { 
                     _animAttack = true;
-                    _animator.SetBool("Attack",_animAttack);
+                    _animator.SetBool(Attack,_animAttack);
                     _fireRateTimer += Time.deltaTime;
                     float fireRate = _weapon.fireRate;
                    if (_fireRateTimer >= fireRate)
@@ -154,7 +160,7 @@ public class PlayerManager : Entity
                 else
                 {
                     _animAttack = false;
-                    _animator.SetBool("Attack",_animAttack);
+                    _animator.SetBool(Attack,_animAttack);
                     _currentState = State.Idle;
                     _fireRateTimer = 0f;
                 }
@@ -164,7 +170,7 @@ public class PlayerManager : Entity
                 if (_delayAfterCombo && canSpecial)
                 {
                     _animSpecialAttack = true;
-                    _animator.SetBool("SpecialAttack",_animSpecialAttack);
+                    _animator.SetBool(SpecialAttack,_animSpecialAttack);
                     // special shoot
                     _weapon.SpecialAttack();
                     BeatManager.Stacks = 0;
@@ -172,7 +178,7 @@ public class PlayerManager : Entity
                 else
                 {
                     _animSpecialAttack = false;
-                    _animator.SetBool("SpecialAttack",_animSpecialAttack);
+                    _animator.SetBool(SpecialAttack,_animSpecialAttack);
                     _currentState = State.Idle;
                 }
                 break;
@@ -180,7 +186,7 @@ public class PlayerManager : Entity
             case State.IsDead:
                 //do the dead
                 _animIsDead = true;
-                _animator.SetBool("IsDead",_animIsDead);
+                _animator.SetBool(IsDead,_animIsDead);
                 break;
             default:
                 Debug.Log("ton switch deconne");
@@ -298,7 +304,7 @@ public class PlayerManager : Entity
         _delayAfterCombo = true;
         BeatManager.Stacks++;
         _animIdle = false;
-        _animator.SetBool("Idle",_animIdle);
+        _animator.SetBool(Idle,_animIdle);
     }
     private void BreakCombo()
     {

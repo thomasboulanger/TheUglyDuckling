@@ -15,7 +15,7 @@ public class BeatManager : MonoBehaviour
     public AudioClip Music0, Music1, Music2, Music3;
 
     [Space]
-    public float percentMargin;
+    public float percentMargin,pulseMargin;
     public RawImage test1, test2, test3, test4;
 
     private static float _bpm1, _bpm2, _bpm3;
@@ -24,6 +24,7 @@ public class BeatManager : MonoBehaviour
     private int _sceneIndex;
     private Color _tmpColor;
     private float _beatMargin;
+    private float _pulseMargin;
 
     private static int _stacks;
     
@@ -34,7 +35,7 @@ public class BeatManager : MonoBehaviour
         {
             _stacks = value;
 
-            //PlayerManager.canSpecial = _stacks >= Variables.MaxSpecial;$
+            //PlayerManager.canSpecial = _stacks >= Variables.MaxSpecial;
             PlayerManager.canSpecial = true;
         }
     }
@@ -65,11 +66,21 @@ public class BeatManager : MonoBehaviour
             if (beatTimer <= _beatMargin || beatTimer >= beatInterval - (_beatMargin))
             {
                 aperture = true;
-                _tmpColor.a = 1f;
+                Debug.Log("j'aime l'argent");
             }
             else
             {
                 aperture = false;
+                Debug.Log("non");
+
+            }
+             
+            if (beatTimer <= _pulseMargin || beatTimer >= beatInterval - (_pulseMargin))
+            {
+                _tmpColor.a = 1f;
+            }
+            else
+            {
                 _tmpColor.a = 0f;
             }
 
@@ -121,6 +132,7 @@ public class BeatManager : MonoBehaviour
                 _audioSource.Play();
                 beatInterval = 60 / _bpm1;
                 _beatMargin = beatInterval * (percentMargin/100f);
+                _pulseMargin = beatInterval * (pulseMargin/100f);
                 break;
             
             case 2:
@@ -129,6 +141,7 @@ public class BeatManager : MonoBehaviour
                 _audioSource.Play();
                 beatInterval = 60 / _bpm2;
                 _beatMargin = beatInterval * (percentMargin/100f);
+                _pulseMargin = beatInterval * (pulseMargin/100f);
                 break;
             
             case 3:
@@ -137,6 +150,7 @@ public class BeatManager : MonoBehaviour
                 _audioSource.Play();
                 beatInterval = 60 / _bpm3;
                 _beatMargin = beatInterval * (percentMargin/100f);
+                _pulseMargin = beatInterval * (pulseMargin/100f);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
