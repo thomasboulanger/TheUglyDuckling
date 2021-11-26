@@ -1,4 +1,3 @@
-using System;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -33,6 +32,6 @@ public class Weapon : MonoBehaviour
     public void SpecialAttack()
     {
         var currentGrenade = Instantiate(grenade, transform.position,  quaternion.identity).GetComponent<Rigidbody2D>();
-        currentGrenade.AddForce(transform.up * 5f);
+        currentGrenade.AddForce(grenade.transform.right * 15f, ForceMode2D.Impulse);
     }
 }
