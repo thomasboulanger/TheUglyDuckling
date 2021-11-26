@@ -16,6 +16,6 @@ public abstract class Entity : MonoBehaviour
             if(health <= Variables.HealthToBeDead) isDead = true;
         }
     }
-        
+
     public void TakeDamage(int damage) => Health -= damage;
 }

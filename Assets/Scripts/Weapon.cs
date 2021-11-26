@@ -1,4 +1,6 @@
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Weapon : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private bool isPlayer;
     
     [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject grenade;
     
     private Quaternion _bulletRotation;
 
@@ -20,5 +23,11 @@ public class Weapon : MonoBehaviour
             
         var currentBullet = Instantiate(bullet, transform.position, _bulletRotation).GetComponent<Bullet>();
         currentBullet.Initialize(speed, distance, isPlayer);
+    }
+
+    public void SpecialAttack()
+    {
+        var currentGrenade = Instantiate(grenade, transform.position,  quaternion.identity).GetComponent<Rigidbody2D>();
+        currentGrenade.AddForce(transform.up * 5f);
     }
 }

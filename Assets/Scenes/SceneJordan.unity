@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 6852942562b2fba45918b13faa066902, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -636,6 +636,7 @@ MonoBehaviour:
   speed: 20
   isPlayer: 0
   bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
+  grenade: {fileID: 0}
 --- !u!1 &214602504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,6 +1675,7 @@ MonoBehaviour:
   speed: 20
   isPlayer: 0
   bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
+  grenade: {fileID: 0}
 --- !u!1 &742209652
 GameObject:
   m_ObjectHideFlags: 0
@@ -2075,6 +2077,7 @@ MonoBehaviour:
   speed: 20
   isPlayer: 0
   bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
+  grenade: {fileID: 0}
 --- !u!1 &1091087774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2123,6 +2126,7 @@ MonoBehaviour:
   speed: 20
   isPlayer: 0
   bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
+  grenade: {fileID: 0}
 --- !u!1 &1158440745
 GameObject:
   m_ObjectHideFlags: 0
@@ -9836,6 +9840,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1093278205, guid: 58b7275a88d38314fac419830bae97a5, type: 3}
+      propertyPath: grenade
+      value: 
+      objectReference: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
     - target: {fileID: 1093278205, guid: 58b7275a88d38314fac419830bae97a5, type: 3}
       propertyPath: distance
       value: 35

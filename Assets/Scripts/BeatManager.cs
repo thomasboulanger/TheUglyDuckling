@@ -5,36 +5,43 @@ using UnityEngine.UI;
 
 public class BeatManager : MonoBehaviour
 {
-    public static float stacks;
+    
     public static float beatTimer;
     public static float beatInterval;
     public static bool aperture;
     
-    public float BPM1;
-    public float BPM2;
-    public float BPM3;
-    public AudioClip Music0;
-    public AudioClip Music1;
-    public AudioClip Music2;
-    public AudioClip Music3;
+    public float BPM1, BPM2, BPM3;
+
+    public AudioClip Music0, Music1, Music2, Music3;
+
     [Space]
     public float percentMargin;
-    public RawImage test1;
-    public RawImage test2;
-    public RawImage test3;
-    public RawImage test4;
+    public RawImage test1, test2, test3, test4;
 
-    private static float _bpm1;
-    private static float _bpm2;
-    private static float _bpm3;
+    private static float _bpm1, _bpm2, _bpm3;
+
     private static AudioSource _audioSource;
     private int _sceneIndex;
     private Color _tmpColor;
     private float _beatMargin;
 
+    private static int _stacks;
+    
+    public static int Stacks
+    {
+        get => _stacks;
+        set
+        {
+            _stacks = value;
+
+            //PlayerManager.canSpecial = _stacks >= Variables.MaxSpecial;$
+            PlayerManager.canSpecial = true;
+        }
+    }
+
     private void Awake()
     {
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
         _audioSource = GetComponent<AudioSource>();
         _bpm1 = BPM1;
         _bpm2 = BPM2;
@@ -43,7 +50,7 @@ public class BeatManager : MonoBehaviour
         _tmpColor = test1.GetComponent<RawImage>().color;
     }
 
-    void Update()
+    private void Update()
     {
 
         if (beatTimer >= beatInterval)
@@ -71,15 +78,16 @@ public class BeatManager : MonoBehaviour
             test3.GetComponent<RawImage>().color = _tmpColor;
             test4.GetComponent<RawImage>().color = _tmpColor;
             
-            if (stacks > 0 )
+            if (_stacks > 0 )
             {
-                if (stacks >= 3) 
+                if (_stacks >= 3) 
                 {
-                    stacks = 3;
+                    _stacks = 3;
                     //UI fever ici
+                    
                 }
 
-                _audioSource.volume = .25f + (.25f * stacks);
+                _audioSource.volume = .25f + (.25f * _stacks);
             }
             else
             {

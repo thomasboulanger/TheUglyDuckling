@@ -6,28 +6,23 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Slider specialHitSlider;
 
-    private ActionAndInputSystem _player;
+    private PlayerManager _player;
     
     private void Awake()
     {
-        _player = FindObjectOfType<ActionAndInputSystem>();
+        _player = FindObjectOfType<PlayerManager>();
 
         SetMaxSliderValue(healthSlider, _player.Health);
+        SetMaxSliderValue(specialHitSlider, Variables.MaxSpecial);
     }
 
     private void Update()
     {
         SetCurrentSliderValue(healthSlider, _player.Health);
+        SetCurrentSliderValue(specialHitSlider, BeatManager.Stacks);
     }
 
-    private static void SetMaxSliderValue(Slider currentSlider, int maxValue)
-    {
-        currentSlider.maxValue = maxValue;
-        currentSlider.value = maxValue;
-    }
+    private static void SetMaxSliderValue(Slider currentSlider, int maxValue) => currentSlider.maxValue = maxValue;
 
-    private static void SetCurrentSliderValue(Slider currentSlider, int currentValue)
-    {
-        currentSlider.value = currentValue;
-    }
+    private static void SetCurrentSliderValue(Slider currentSlider, int currentValue) => currentSlider.value = currentValue;
 }
