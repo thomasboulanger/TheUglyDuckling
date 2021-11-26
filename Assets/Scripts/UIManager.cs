@@ -20,7 +20,6 @@ public class UIManager : MonoBehaviour
 
     private PlayerManager _player;
     private List<char> charList = new List<char>();
-    private Sprite _input1, _input2, _input3, _input4;
     private Color _tmpColor;
     
     private void Awake()
@@ -64,39 +63,49 @@ public class UIManager : MonoBehaviour
         {
             if (PlayerManager.combo[i] == 'H')
             {
-                cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = transparentSquare;
+                cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = inputUp;
             }
             else if (PlayerManager.combo[i] == 'B')
             {
-                cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = transparentSquare;
+                cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = inputBottom;
             }
             else if (PlayerManager.combo[i] == 'G')
             {
-                cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = transparentSquare;
+                cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = inputLeft;
             }
             else if (PlayerManager.combo[i] == 'D')
             {
-                cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = transparentSquare;
+                cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = inputRight;
             }
-
-            switch (PlayerManager.combo.Length)
-            {
-                case 0 :
-                    
-                    break;
-                case 0 :
-                    
-                    break;
-                case 0 :
-                    
-                    break;
-                case 0 :
-                    
-                    break;
-                case 0 :
-                    
-                    break;
-            }
+        }
+        switch (PlayerManager.combo.Length)
+        {
+            case 0 :
+                for (int i = 0; i < cadrePanel.transform.childCount; i++) 
+                {
+                    cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = transparentSquare;
+                }
+                break;
+            case 1 :
+                for (int i = 1; i < cadrePanel.transform.childCount; i++) 
+                {
+                    cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = transparentSquare;
+                }
+                break;
+            case 2 :
+                for (int i = 2; i < cadrePanel.transform.childCount; i++) 
+                {
+                    cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = transparentSquare;
+                }
+                break;
+            case 3 :
+                for (int i = 3; i < cadrePanel.transform.childCount; i++) 
+                {
+                    cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = transparentSquare;
+                }
+                break;
+            default:
+                break;
         }
     }
 
