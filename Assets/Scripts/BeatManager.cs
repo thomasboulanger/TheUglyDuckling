@@ -57,6 +57,7 @@ public class BeatManager : MonoBehaviour
         if (beatTimer >= beatInterval)
         {
             beatTimer -= beatInterval;
+            _audioSource.PlayOneShot(Music0);
         }
 
         if (_sceneIndex != 0)
