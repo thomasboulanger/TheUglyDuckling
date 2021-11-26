@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Security.Policy;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -19,9 +15,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider specialHitSlider;
 
     private PlayerManager _player;
-    private List<char> charList = new List<char>();
     private Color _tmpColor;
-    
+    private int _delayTimer;
+
     private void Awake()
     {
         _player = FindObjectOfType<PlayerManager>();
@@ -44,6 +40,7 @@ public class UIManager : MonoBehaviour
     {
         SetCurrentSliderValue(healthSlider, _player.Health);
         SetCurrentSliderValue(specialHitSlider, BeatManager.Stacks);
+
         if (BeatManager.pulseAperture)
         {
             _tmpColor.a = 1f;
@@ -58,6 +55,20 @@ public class UIManager : MonoBehaviour
            pulsePanel.transform.GetChild(i).GetComponent<RawImage>().color = _tmpColor;
         }
 
+        
+        
+        if (BeatManager.beatTimer >= BeatManager.beatInterval)
+        {
+            if (PlayerManager.delayAfterCombo)
+            {
+                _delayTimer++;
+            }
+        }
+
+        if (_delayTimer == 4)
+        {
+            _delayTimer = 0;
+        }
 
         for (int i = 0; i < PlayerManager.combo.Length; i++) 
         {
@@ -81,10 +92,13 @@ public class UIManager : MonoBehaviour
         switch (PlayerManager.combo.Length)
         {
             case 0 :
+                if (PlayerManager.delayAfterCombo && _delayTimer <= 2f) return;
+
                 for (int i = 0; i < cadrePanel.transform.childCount; i++) 
                 {
                     cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = transparentSquare;
                 }
+                
                 break;
             case 1 :
                 for (int i = 1; i < cadrePanel.transform.childCount; i++) 

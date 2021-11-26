@@ -6,6 +6,8 @@ public class PlayerManager : Entity
     public static bool isCameraFreezed = false;
     public static Vector2 freezeCameraPos;
     public static string combo = "";
+    public static bool delayAfterCombo;
+
 
     public AudioClip clipUp;
     public AudioClip clipDown;
@@ -18,7 +20,6 @@ public class PlayerManager : Entity
 
     private AudioSource _audioSource;
     private bool _aperture;
-    private bool _delayAfterCombo;
     private int _afterComboTimer;
     private int _afkTimer;
     private Animator _animator;
@@ -68,7 +69,7 @@ public class PlayerManager : Entity
         if (BeatManager.beatTimer >= BeatManager.beatInterval)
         {
             _afkTimer++;
-            if (_delayAfterCombo)
+            if (delayAfterCombo)
             {
                 _afterComboTimer++;
             }
@@ -76,7 +77,7 @@ public class PlayerManager : Entity
 
         if (_afterComboTimer == 4)
         {
-            _delayAfterCombo = false;
+            delayAfterCombo = false;
             _afterComboTimer = 0;
         }
 
@@ -93,7 +94,8 @@ public class PlayerManager : Entity
                 _rb2D.velocity = Vector2.zero;
                 break;
             case State.WalkForward:
-                if (_delayAfterCombo)
+                combo = "";
+                if (delayAfterCombo)
                 {
                     _animWalkForward = true;
                     _animator.SetBool(WalkForward,_animWalkForward);
@@ -108,7 +110,8 @@ public class PlayerManager : Entity
                 break;
             
             case State.WalkBackward:
-                if (_delayAfterCombo)
+                combo = "";
+                if (delayAfterCombo)
                 {
                     if (_lerpValue > 1f)
                     {
@@ -145,7 +148,8 @@ public class PlayerManager : Entity
                 break;
             
             case State.Attack:
-                if (_delayAfterCombo)
+                combo = "";
+                if (delayAfterCombo)
                 { 
                     _animAttack = true;
                     _animator.SetBool(Attack,_animAttack);
@@ -167,13 +171,14 @@ public class PlayerManager : Entity
                 break;
             
             case State.SpecialAttack:
-                if (_delayAfterCombo && canSpecial)
+                combo = "";
+                if (delayAfterCombo && canSpecial)
                 {
                     _animSpecialAttack = true;
                     _animator.SetBool(SpecialAttack,_animSpecialAttack);
                     // special shoot
                     _weapon.SpecialAttack();
-                    BeatManager.Stacks = 0;
+                   //feverStack = 0;
                 }
                 else
                 {
@@ -196,7 +201,7 @@ public class PlayerManager : Entity
         if (InputManager.upInput)
         {
             _audioSource.PlayOneShot(clipUp);
-            if (_delayAfterCombo || !_aperture)
+            if (delayAfterCombo || !_aperture)
             {
                 BreakCombo();
             }
@@ -210,7 +215,7 @@ public class PlayerManager : Entity
         if (InputManager.downInput)
         {
             _audioSource.PlayOneShot(clipDown);
-            if (_delayAfterCombo || !_aperture)
+            if (delayAfterCombo || !_aperture)
             {
                 BreakCombo();
             }
@@ -224,7 +229,7 @@ public class PlayerManager : Entity
         if (InputManager.leftInput)
         {
             _audioSource.PlayOneShot(clipLeft);
-            if (_delayAfterCombo || !_aperture)
+            if (delayAfterCombo || !_aperture)
             {
                 BreakCombo();
             }
@@ -238,7 +243,7 @@ public class PlayerManager : Entity
         if (InputManager.rightInput)
         {
             _audioSource.PlayOneShot(clipRight);
-            if (_delayAfterCombo || !_aperture)
+            if (delayAfterCombo || !_aperture)
             {
                 BreakCombo();
             }
@@ -300,9 +305,12 @@ public class PlayerManager : Entity
     
     private void OnCombo()
     {
-        combo = "";
-        _delayAfterCombo = true;
+        delayAfterCombo = true;
         BeatManager.Stacks++;
+        if (BeatManager.Stacks >= 3) 
+        {
+            //feverStack++;
+        }
         _animIdle = false;
         _animator.SetBool(Idle,_animIdle);
     }
@@ -310,6 +318,6 @@ public class PlayerManager : Entity
     {
         BeatManager.Stacks = 0;
         combo = "";
-        _delayAfterCombo = false;
+        delayAfterCombo = false;
     }
 }
