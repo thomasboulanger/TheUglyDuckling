@@ -5,6 +5,7 @@ public class PlayerManager : Entity
 {
     public static bool isCameraFreezed = false;
     public static Vector2 freezeCameraPos;
+    public static string combo = "";
 
     public AudioClip clipUp;
     public AudioClip clipDown;
@@ -17,7 +18,6 @@ public class PlayerManager : Entity
 
     private AudioSource _audioSource;
     private bool _aperture;
-    private string _combo = "";
     private bool _delayAfterCombo;
     private int _afterComboTimer;
     private int _afkTimer;
@@ -82,7 +82,7 @@ public class PlayerManager : Entity
 
         if (_afkTimer >= 2)
         {
-            _combo = "";
+            combo = "";
         }
 
         switch (_currentState)
@@ -203,7 +203,7 @@ public class PlayerManager : Entity
             else
             {
                 _afkTimer = 0;
-                _combo += "H";
+                combo += "H";
             }
         }
 
@@ -217,7 +217,7 @@ public class PlayerManager : Entity
             else
             {
                 _afkTimer = 0;
-                _combo += "B";
+                combo += "B";
             }
         }
 
@@ -231,7 +231,7 @@ public class PlayerManager : Entity
             else
             {
                 _afkTimer = 0;
-                _combo += "G";
+                combo += "G";
             }
         }
 
@@ -245,30 +245,30 @@ public class PlayerManager : Entity
             else
             {
                 _afkTimer = 0;
-                _combo += "D";
+                combo += "D";
             }
         }
 
-        if (_combo.Length >= 4)
+        if (combo.Length >= 4)
         {
-            if (_combo.Length > 4)
+            if (combo.Length > 4)
             {
-                _combo = _combo.Substring(1);
+                combo = combo.Substring(1);
             }
             
-            if (_combo == comboList[0])
+            if (combo == comboList[0])
             {
                 Avancer();
             }
-            else if (_combo == comboList[1])
+            else if (combo == comboList[1])
             {
                 Attaquer();
             }
-            else if (_combo == comboList[2])
+            else if (combo == comboList[2])
             {
                 Retraite();
             }
-            else if (_combo == comboList[3])
+            else if (combo == comboList[3])
             {
                 CoupSpecial();
             }
@@ -300,7 +300,7 @@ public class PlayerManager : Entity
     
     private void OnCombo()
     {
-        _combo = "";
+        combo = "";
         _delayAfterCombo = true;
         BeatManager.Stacks++;
         _animIdle = false;
@@ -309,7 +309,7 @@ public class PlayerManager : Entity
     private void BreakCombo()
     {
         BeatManager.Stacks = 0;
-        _combo = "";
+        combo = "";
         _delayAfterCombo = false;
     }
 }

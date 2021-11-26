@@ -9,20 +9,18 @@ public class BeatManager : MonoBehaviour
     public static float beatTimer;
     public static float beatInterval;
     public static bool aperture;
+    public static bool pulseAperture;
     
     public float BPM1, BPM2, BPM3;
-
     public AudioClip Music0, Music1, Music2, Music3;
-
-    [Space]
-    public float percentMargin,pulseMargin;
-    public RawImage test1, test2, test3, test4;
+    [Space] 
+    public float percentMargin;
+    public float pulseMargin;
 
     private static float _bpm1, _bpm2, _bpm3;
 
     private static AudioSource _audioSource;
     private int _sceneIndex;
-    private Color _tmpColor;
     private float _beatMargin;
     private float _pulseMargin;
 
@@ -47,8 +45,6 @@ public class BeatManager : MonoBehaviour
         _bpm1 = BPM1;
         _bpm2 = BPM2;
         _bpm3 = BPM3;
-        
-        _tmpColor = test1.GetComponent<RawImage>().color;
     }
 
     private void Update()
@@ -57,7 +53,6 @@ public class BeatManager : MonoBehaviour
         if (beatTimer >= beatInterval)
         {
             beatTimer -= beatInterval;
-            _audioSource.PlayOneShot(Music0);
         }
 
         if (_sceneIndex != 0)
@@ -75,18 +70,13 @@ public class BeatManager : MonoBehaviour
              
             if (beatTimer <= _pulseMargin || beatTimer >= beatInterval - (_pulseMargin))
             {
-                _tmpColor.a = 1f;
+                pulseAperture = true;
             }
             else
             {
-                _tmpColor.a = 0f;
+                pulseAperture = false;
             }
 
-            test1.GetComponent<RawImage>().color = _tmpColor;
-            test2.GetComponent<RawImage>().color = _tmpColor;
-            test3.GetComponent<RawImage>().color = _tmpColor;
-            test4.GetComponent<RawImage>().color = _tmpColor;
-            
             if (_stacks > 0 )
             {
                 if (_stacks >= 3) 
