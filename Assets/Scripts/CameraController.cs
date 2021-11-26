@@ -16,9 +16,9 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (ActionAndInputSystem.isCameraFreezed)
+        if (PlayerManager.isCameraFreezed)
         {
-            _targetPosition = new Vector3(ActionAndInputSystem.freezeCameraPos.x,ActionAndInputSystem.freezeCameraPos.y,0f)  + offset;
+            _targetPosition = new Vector3(PlayerManager.freezeCameraPos.x,PlayerManager.freezeCameraPos.y,0f)  + offset;
         }
         else
         { 

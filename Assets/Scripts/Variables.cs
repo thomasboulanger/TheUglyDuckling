@@ -5,6 +5,7 @@ public static class Variables
     public const int FirstActionIndex = 0;
     public const int FirstAttackIndex = 0;
     public const int HealthToBeDead = 0;
+    public const int MaxSpecial = 3;
     #endregion
         
     #region Enemy/Boss Data
@@ -17,7 +18,7 @@ public static class Variables
     public const string EnemyTag = "Enemy";
     #endregion
         
-    #region AnimationsNames
+    #region EnemyAnimationsNames
     public const string AttackAnimName = "Attack";
     public const string DodgeAnimName = "Run";
     public const string DeadAnimName = "Die";
