@@ -128,6 +128,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "TestKey",
+            "id": "f2951b38-61a0-474f-91ed-47e0adec5a8b",
+            "actions": [
+                {
+                    "name": "Space",
+                    "type": "Button",
+                    "id": "eb052f33-17cc-4500-8970-e4fc28e787c4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3abd1942-c150-438e-a02e-b75982f97da3",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Space",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

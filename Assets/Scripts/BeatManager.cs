@@ -66,13 +66,10 @@ public class BeatManager : MonoBehaviour
             if (beatTimer <= _beatMargin || beatTimer >= beatInterval - (_beatMargin))
             {
                 aperture = true;
-                Debug.Log("j'aime l'argent");
             }
             else
             {
                 aperture = false;
-                Debug.Log("non");
-
             }
              
             if (beatTimer <= _pulseMargin || beatTimer >= beatInterval - (_pulseMargin))

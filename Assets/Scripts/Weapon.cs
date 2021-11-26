@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -16,6 +17,10 @@ public class Weapon : MonoBehaviour
     private Quaternion _bulletRotation;
 
     //firerate riffle 0.18f, shotgun 0.1f, laser 1.5f
+    private void Update()
+    {
+        if(isPlayer && InputManager.testInput) SpecialAttack();
+    }
 
     public void Shoot()
     {

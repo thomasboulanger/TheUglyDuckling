@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scenes/Jordan/PlayerControls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/InputSystem/PlayerControls.inputactions'
 
 using System;
 using System.Collections;
@@ -141,6 +141,33 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""TestKey"",
+            ""id"": ""f2951b38-61a0-474f-91ed-47e0adec5a8b"",
+            ""actions"": [
+                {
+                    ""name"": ""Space"",
+                    ""type"": ""Button"",
+                    ""id"": ""eb052f33-17cc-4500-8970-e4fc28e787c4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""3abd1942-c150-438e-a02e-b75982f97da3"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Space"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -151,6 +178,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_ActionKey_Right = m_ActionKey.FindAction("Right", throwIfNotFound: true);
         m_ActionKey_Down = m_ActionKey.FindAction("Down", throwIfNotFound: true);
         m_ActionKey_Left = m_ActionKey.FindAction("Left", throwIfNotFound: true);
+        // TestKey
+        m_TestKey = asset.FindActionMap("TestKey", throwIfNotFound: true);
+        m_TestKey_Space = m_TestKey.FindAction("Space", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -253,11 +283,48 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         }
     }
     public ActionKeyActions @ActionKey => new ActionKeyActions(this);
+
+    // TestKey
+    private readonly InputActionMap m_TestKey;
+    private ITestKeyActions m_TestKeyActionsCallbackInterface;
+    private readonly InputAction m_TestKey_Space;
+    public struct TestKeyActions
+    {
+        private @PlayerControls m_Wrapper;
+        public TestKeyActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Space => m_Wrapper.m_TestKey_Space;
+        public InputActionMap Get() { return m_Wrapper.m_TestKey; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TestKeyActions set) { return set.Get(); }
+        public void SetCallbacks(ITestKeyActions instance)
+        {
+            if (m_Wrapper.m_TestKeyActionsCallbackInterface != null)
+            {
+                @Space.started -= m_Wrapper.m_TestKeyActionsCallbackInterface.OnSpace;
+                @Space.performed -= m_Wrapper.m_TestKeyActionsCallbackInterface.OnSpace;
+                @Space.canceled -= m_Wrapper.m_TestKeyActionsCallbackInterface.OnSpace;
+            }
+            m_Wrapper.m_TestKeyActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Space.started += instance.OnSpace;
+                @Space.performed += instance.OnSpace;
+                @Space.canceled += instance.OnSpace;
+            }
+        }
+    }
+    public TestKeyActions @TestKey => new TestKeyActions(this);
     public interface IActionKeyActions
     {
         void OnUp(InputAction.CallbackContext context);
         void OnRight(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
         void OnLeft(InputAction.CallbackContext context);
+    }
+    public interface ITestKeyActions
+    {
+        void OnSpace(InputAction.CallbackContext context);
     }
 }
