@@ -26,8 +26,8 @@ public class UIManager : MonoBehaviour
     {
         _player = FindObjectOfType<PlayerManager>();
         
-        //SetMaxSliderValue(healthSlider, _player.Health);
-        //SetMaxSliderValue(specialHitSlider, Variables.MaxSpecial);
+        SetMaxSliderValue(healthSlider, _player.Health);
+        SetMaxSliderValue(specialHitSlider, Variables.MaxSpecial);
     }
 
     private void Start()
@@ -42,8 +42,8 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        //SetCurrentSliderValue(healthSlider, _player.Health);
-        //SetCurrentSliderValue(specialHitSlider, BeatManager.Stacks);
+        SetCurrentSliderValue(healthSlider, _player.Health);
+        SetCurrentSliderValue(specialHitSlider, BeatManager.Stacks);
         if (BeatManager.pulseAperture)
         {
             _tmpColor.a = 1f;
