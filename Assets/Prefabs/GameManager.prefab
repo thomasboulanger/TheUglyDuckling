@@ -47,11 +47,12 @@ MonoBehaviour:
   BPM1: 91
   BPM2: 105
   BPM3: 123
-  Music0: {fileID: 8300000, guid: d481864a7872d584d90bc92f84c23bca, type: 3}
+  Music0: {fileID: 8300000, guid: 768763676cf79074e87de8911ac1aad0, type: 3}
   Music1: {fileID: 8300000, guid: e7ad088afe4ca4a41a1141f9d0782cbe, type: 3}
   Music2: {fileID: 8300000, guid: c94d4f776a3bf6c4cbe3fbf59cd66d52, type: 3}
   Music3: {fileID: 8300000, guid: 0ee9d521389895544a7dca8e185c47a3, type: 3}
   percentMargin: 30
+  pulseMargin: 7
   test1: {fileID: 0}
   test2: {fileID: 0}
   test3: {fileID: 0}
