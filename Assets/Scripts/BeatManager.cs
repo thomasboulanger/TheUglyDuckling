@@ -31,15 +31,14 @@ public class BeatManager : MonoBehaviour
         get => _stacks;
         set
         {
-            _stacks = value;
+            _stacks = value;                                                                                                                                                                            
 
-            //PlayerManager.canSpecial = _stacks >= Variables.MaxSpecial;
-            PlayerManager.canSpecial = true;
+            PlayerManager.canSpecial = _stacks >= Variables.MaxSpecial;
         }
     }
 
     private void Awake()
-    {
+    {                                                                                                                               
         DontDestroyOnLoad(gameObject);
         _audioSource = GetComponent<AudioSource>();
         _bpm1 = BPM1;
