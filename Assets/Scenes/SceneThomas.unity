@@ -2524,6 +2524,8 @@ MonoBehaviour:
   inputRight: {fileID: 21300000, guid: e795718b23facce41a4b151e10ca171d, type: 3}
   healthSlider: {fileID: 88086702}
   specialHitSlider: {fileID: 1065320318}
+  pauseMenu: {fileID: 0}
+  optionsMenu: {fileID: 0}
 --- !u!114 &1539457566487582196
 MonoBehaviour:
   m_ObjectHideFlags: 0
