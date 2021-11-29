@@ -2971,6 +2971,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1093278205, guid: 58b7275a88d38314fac419830bae97a5, type: 3}
+      propertyPath: grenade
+      value: 
+      objectReference: {fileID: 1587677193227609275, guid: 7e6cc48f59fb6014f988bb3635d2b063, type: 3}
     - target: {fileID: 5799427618019358928, guid: 58b7275a88d38314fac419830bae97a5, type: 3}
       propertyPath: m_RootOrder
       value: 7
