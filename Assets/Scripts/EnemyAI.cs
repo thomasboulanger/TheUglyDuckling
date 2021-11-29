@@ -13,7 +13,7 @@ public class EnemyAI : Entity
         
     [SerializeField] protected int maxActionRepetition = 2;
     [SerializeField] protected float distanceDetection = 10f;
-        
+
     private State _currentState = State.Idle;
 
     private int _dodgeCount;
@@ -21,6 +21,9 @@ public class EnemyAI : Entity
     private Transform _player;
 
     protected Weapon weapon;
+
+    [SerializeField] private GameObject cubeDisplay;
+    private Color cubeColor;
 
     private enum State
     {
@@ -36,7 +39,9 @@ public class EnemyAI : Entity
         weapon = GetComponentInChildren<Weapon>();
             
         _player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).transform;
-            
+
+        cubeColor = cubeDisplay.GetComponent<SpriteRenderer>().material.color;
+        
         ResetCounters();
     }
 
@@ -91,9 +96,11 @@ public class EnemyAI : Entity
         UpdateCounters(true);
             
         isActive = true;
+        
+        cubeColor = Color.red;
             
         animator.Play(Variables.AttackAnimName);
-        
+
         weapon.Shoot();
     }
         
@@ -102,17 +109,31 @@ public class EnemyAI : Entity
         UpdateCounters(false);
             
         isActive = true;
+        
+        cubeColor = Color.cyan;
             
         animator.Play(Variables.DodgeAnimName);
     }
-        
+
+    private int _actionCount;
+    
     protected virtual void EnemyActions()
     {
         if (isActive) return;
-            
+        
+        cubeColor = Color.yellow;
+
+        if (!(BeatManager.beatTimer >= BeatManager.beatInterval)) return;
+        
+        _actionCount++;
+
+        if (_actionCount != 4) return;
+        
         if(_dodgeCount == maxActionRepetition) Attack();
         else if(attackCount == maxActionRepetition) Dodge();
         else RandomAction();
+                
+        _actionCount = 0;
     }
     #endregion
 

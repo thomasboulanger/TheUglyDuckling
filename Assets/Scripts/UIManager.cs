@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -13,6 +15,8 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private Slider healthSlider;
     [SerializeField] private Slider specialHitSlider;
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject optionsMenu;
 
     private PlayerManager _player;
     private Color _tmpColor;
@@ -21,6 +25,8 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         _player = FindObjectOfType<PlayerManager>();
+        
+        pauseMenu.SetActive(false);
         
         SetMaxSliderValue(healthSlider, _player.Health);
         SetMaxSliderValue(specialHitSlider, Variables.MaxSpecial);
@@ -39,16 +45,16 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         SetCurrentSliderValue(healthSlider, _player.Health);
-        SetCurrentSliderValue(specialHitSlider, BeatManager.Stacks);
+        SetCurrentSliderValue(specialHitSlider, BeatManager.feverStacks);
 
-        if (BeatManager.pulseAperture)
+        if (InputManager.pauseInput)
         {
-            _tmpColor.a = 1f;
+            if(pauseMenu.activeSelf) Resume();
+            else if(!optionsMenu.activeSelf) Pause();
+            else if(optionsMenu.activeSelf) Return();
         }
-        else
-        {
-            _tmpColor.a = 0f;
-        }
+
+        _tmpColor.a = BeatManager.pulseAperture ? 1f : 0f;
 
         for (int i = 0; i < pulsePanel.transform.childCount; i++)
         {
@@ -118,9 +124,34 @@ public class UIManager : MonoBehaviour
                     cadrePanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = transparentSquare;
                 }
                 break;
-            default:
-                break;
         }
+    }
+
+    private void Pause()
+    {
+        Time.timeScale = 0f;
+        pauseMenu.SetActive(true);
+    }
+
+    public void Resume()
+    {
+        Time.timeScale = 1f;
+        pauseMenu.SetActive(false);
+        optionsMenu.SetActive(false);
+    }
+
+    [UsedImplicitly] public static void ReturnMain() => SceneManager.LoadScene(0);
+    
+    public void Return()
+    {
+        pauseMenu.SetActive(true);
+        optionsMenu.SetActive(false);
+    }
+    
+    [UsedImplicitly] public void Options()
+    {
+        pauseMenu.SetActive(false);
+        optionsMenu.SetActive(true);
     }
 
     private static void SetMaxSliderValue(Slider currentSlider, int maxValue) => currentSlider.maxValue = maxValue;

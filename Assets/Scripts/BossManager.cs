@@ -48,6 +48,7 @@ public abstract class BossManager : EnemyAI
         isActive = true;
             
         animator.Play(Variables.AttackAnimName + attackIndex);
+
         weapon.Shoot();
     }
 }
