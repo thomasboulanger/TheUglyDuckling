@@ -13,15 +13,17 @@ public class EnemyAI : Entity
         
     [SerializeField] protected int maxActionRepetition = 2;
     [SerializeField] protected float distanceDetection = 10f;
-        
+
     private State _currentState = State.Idle;
 
-    private int _dodgeCount;
+    protected int dodgeCount;
         
     private Transform _player;
 
     protected Weapon weapon;
 
+    [SerializeField] protected GameObject cubeDisplay;
+    
     private enum State
     {
         Idle,
@@ -36,7 +38,7 @@ public class EnemyAI : Entity
         weapon = GetComponentInChildren<Weapon>();
             
         _player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).transform;
-            
+
         ResetCounters();
     }
 
@@ -78,12 +80,20 @@ public class EnemyAI : Entity
     #endregion
         
     #region Actions
+    protected virtual void RandomAction(int randomIndex)
+    {
+        
+
+        if (randomIndex == Variables.FirstActionIndex){ Attack();}
+        else Dodge();
+    }
+    
     protected virtual void RandomAction()
     {
-        var randomIndex = Random.Range(Variables.FirstActionIndex, Variables.NbActions);
+        
 
-        if (randomIndex == Variables.FirstActionIndex) Attack();
-        else Dodge();
+        /*if (randomIndex == Variables.FirstActionIndex){ Attack();}
+        else Dodge();*/
     }
         
     protected virtual void Attack()
@@ -91,9 +101,11 @@ public class EnemyAI : Entity
         UpdateCounters(true);
             
         isActive = true;
-            
-        animator.Play(Variables.AttackAnimName);
+
+        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
         
+        animator.Play(Variables.AttackAnimName);
+
         weapon.Shoot();
     }
         
@@ -102,17 +114,41 @@ public class EnemyAI : Entity
         UpdateCounters(false);
             
         isActive = true;
+        
+        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
             
         animator.Play(Variables.DodgeAnimName);
     }
-        
+
+    protected int actionCount;
+
+    protected int randomIndex;
+    
     protected virtual void EnemyActions()
     {
         if (isActive) return;
+
+        if (!(BeatManager.beatTimer >= BeatManager.beatInterval)) return;
+
+        if (actionCount == 0)
+        {
+            randomIndex = Random.Range(Variables.FirstActionIndex, Variables.NbActions);
             
-        if(_dodgeCount == maxActionRepetition) Attack();
+            cubeDisplay.GetComponent<SpriteRenderer>().color = randomIndex == 0 ? Color.red : Color.cyan;
+            
+            if(dodgeCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
+            else if(attackCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
+        }
+        
+        actionCount++;
+
+        if (actionCount != 4) return;
+
+        if(dodgeCount == maxActionRepetition) Attack();
         else if(attackCount == maxActionRepetition) Dodge();
-        else RandomAction();
+        else RandomAction(randomIndex);
+                
+        actionCount = 0;
     }
     #endregion
 
@@ -126,19 +162,19 @@ public class EnemyAI : Entity
     {
         if (isAttack)
         {
-            _dodgeCount = Variables.ResetCounter;
+            dodgeCount = Variables.ResetCounter;
             attackCount++;
         }
         else
         {
             attackCount = Variables.ResetCounter;
-            _dodgeCount++;
+            dodgeCount++;
         }
     }
         
     protected void ResetCounters()
     {
-        _dodgeCount = Variables.ResetCounter;
+        dodgeCount = Variables.ResetCounter;
         attackCount = Variables.ResetCounter;
     }
     #endregion

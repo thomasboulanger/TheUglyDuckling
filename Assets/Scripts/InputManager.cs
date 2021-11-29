@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public static bool upInput, rightInput, downInput, leftInput, testInput;
+    public static bool upInput, rightInput, downInput, leftInput, pauseInput, testInput;
         
     private PlayerControls _playerControls;
 
@@ -38,6 +38,9 @@ public class InputManager : MonoBehaviour
         _playerControls.ActionKey.Right.started += i => rightInput = true;
         _playerControls.ActionKey.Down.started += i => downInput = true;
         _playerControls.ActionKey.Left.started += i => leftInput = true;
+        
+        _playerControls.ActionKey.Pause.started += i => pauseInput = true;
+        
         _playerControls.TestKey.Space.started += i => testInput = true;
     }
 
@@ -47,6 +50,9 @@ public class InputManager : MonoBehaviour
         rightInput = false;
         downInput = false;
         leftInput = false;
+
+        pauseInput = false;
+        
         testInput = false;
     }
 }

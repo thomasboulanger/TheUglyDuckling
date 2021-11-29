@@ -20,34 +20,35 @@ public abstract class BossManager : EnemyAI
             Attack(randomIndex);
             return;
         }
-    }
         
-    protected override void Attack()
+        //Reload();
+    }
+    
+    
+    
+    /*protected override void Attack(int randomIndex)
     {
-        var randomIndex = Random.Range(Variables.FirstAttackIndex, nbAttacks + 1);
+        //var randomIndex = Random.Range(Variables.FirstAttackIndex, nbAttacks + 1);
             
         Attack(randomIndex);
-    }
-
-    protected void Reload()
-    {
-        ResetCounters();
-        animator.Play(Variables.ReloadAnimName);
-    }
-        
+    }*/
+    
     protected void Rest()
     {
         ResetCounters();
         animator.Play(Variables.RestAnimName);
     }
         
-    private void Attack(int attackIndex)
+    protected void Attack(int attackIndex)
     {
         UpdateCounters(true);
             
         isActive = true;
-            
+        
+        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
+        
         animator.Play(Variables.AttackAnimName + attackIndex);
+
         weapon.Shoot();
     }
 }

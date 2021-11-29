@@ -49,6 +49,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""75e53db8-850c-49aa-9b4a-a3827374fff4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -139,6 +147,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Left"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df30a5f7-ef71-43df-b4de-e8f0e0f8ae13"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -178,6 +197,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_ActionKey_Right = m_ActionKey.FindAction("Right", throwIfNotFound: true);
         m_ActionKey_Down = m_ActionKey.FindAction("Down", throwIfNotFound: true);
         m_ActionKey_Left = m_ActionKey.FindAction("Left", throwIfNotFound: true);
+        m_ActionKey_Pause = m_ActionKey.FindAction("Pause", throwIfNotFound: true);
         // TestKey
         m_TestKey = asset.FindActionMap("TestKey", throwIfNotFound: true);
         m_TestKey_Space = m_TestKey.FindAction("Space", throwIfNotFound: true);
@@ -234,6 +254,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_ActionKey_Right;
     private readonly InputAction m_ActionKey_Down;
     private readonly InputAction m_ActionKey_Left;
+    private readonly InputAction m_ActionKey_Pause;
     public struct ActionKeyActions
     {
         private @PlayerControls m_Wrapper;
@@ -242,6 +263,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Right => m_Wrapper.m_ActionKey_Right;
         public InputAction @Down => m_Wrapper.m_ActionKey_Down;
         public InputAction @Left => m_Wrapper.m_ActionKey_Left;
+        public InputAction @Pause => m_Wrapper.m_ActionKey_Pause;
         public InputActionMap Get() { return m_Wrapper.m_ActionKey; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -263,6 +285,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Left.started -= m_Wrapper.m_ActionKeyActionsCallbackInterface.OnLeft;
                 @Left.performed -= m_Wrapper.m_ActionKeyActionsCallbackInterface.OnLeft;
                 @Left.canceled -= m_Wrapper.m_ActionKeyActionsCallbackInterface.OnLeft;
+                @Pause.started -= m_Wrapper.m_ActionKeyActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_ActionKeyActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_ActionKeyActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_ActionKeyActionsCallbackInterface = instance;
             if (instance != null)
@@ -279,6 +304,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Left.started += instance.OnLeft;
                 @Left.performed += instance.OnLeft;
                 @Left.canceled += instance.OnLeft;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -322,6 +350,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnRight(InputAction.CallbackContext context);
         void OnDown(InputAction.CallbackContext context);
         void OnLeft(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface ITestKeyActions
     {
