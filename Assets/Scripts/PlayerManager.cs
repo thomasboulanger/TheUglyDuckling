@@ -7,6 +7,7 @@ public class PlayerManager : Entity
     public static Vector2 freezeCameraPos;
     public static string combo = "";
     public static bool delayAfterCombo;
+    public static bool canSpecial;
 
 
     public AudioClip clipUp;
@@ -28,11 +29,8 @@ public class PlayerManager : Entity
     private float _lerpValue = 0f;
     private bool _trigger;
     private float _fireRateTimer;
-
-    public static bool canSpecial;
-
+    private int _nbAttack;
     private int _feverCount;
-
     private Weapon _weapon;
 
     private enum State
@@ -99,7 +97,7 @@ public class PlayerManager : Entity
                 {
                     _animWalkForward = true;
                     _animator.SetBool(WalkForward,_animWalkForward);
-                    _rb2D.velocity =  Vector2.right * speed /* Time.deltaTime*/;
+                    _rb2D.velocity =  Vector2.right * speed;
                 }
                 else
                 {
@@ -155,10 +153,11 @@ public class PlayerManager : Entity
                     _animator.SetBool(Attack,_animAttack);
                     _fireRateTimer += Time.deltaTime;
                     float fireRate = _weapon.fireRate;
-                   if (_fireRateTimer >= fireRate)
-                    {
-                        _fireRateTimer -= fireRate;
-                        _weapon.Shoot();
+                   if (_fireRateTimer >= fireRate && _nbAttack < 3)
+                   {
+                       _nbAttack++;
+                       _fireRateTimer -= fireRate; 
+                       _weapon.Shoot();
                     }
                 }
                 else
@@ -167,6 +166,7 @@ public class PlayerManager : Entity
                     _animator.SetBool(Attack,_animAttack);
                     _currentState = State.Idle;
                     _fireRateTimer = 0f;
+                    _nbAttack = 0;
                 }
                 break;
             
@@ -307,9 +307,9 @@ public class PlayerManager : Entity
     {
         delayAfterCombo = true;
         BeatManager.Stacks++;
-        if (BeatManager.Stacks >= 3) 
+        if (BeatManager.Stacks >= 3)
         {
-            //feverStack++;
+            BeatManager.feverStacks++;
         }
         _animIdle = false;
         _animator.SetBool(Idle,_animIdle);

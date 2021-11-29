@@ -43,11 +43,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddb504b9bb490f4ab27b68802e530d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.18
+  fireRate: 0.25
   distance: 22
   speed: 20
   isPlayer: 1
   bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
+  grenade: {fileID: 0}
 --- !u!1 &5799427618019358932
 GameObject:
   m_ObjectHideFlags: 0

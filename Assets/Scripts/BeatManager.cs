@@ -10,6 +10,8 @@ public class BeatManager : MonoBehaviour
     public static float beatInterval;
     public static bool aperture;
     public static bool pulseAperture;
+    public static int Stacks;
+    public static int feverStacks;
     
     public float BPM1, BPM2, BPM3;
     public AudioClip Music0, Music1, Music2, Music3;
@@ -24,18 +26,8 @@ public class BeatManager : MonoBehaviour
     private float _beatMargin;
     private float _pulseMargin;
 
-    private static int _stacks;
     
-    public static int Stacks
-    {
-        get => _stacks;
-        set
-        {
-            _stacks = value;                                                                                                                                                                            
-
-            PlayerManager.canSpecial = _stacks >= Variables.MaxSpecial;
-        }
-    }
+    
 
     private void Awake()
     {                                                                                                                               
@@ -76,16 +68,15 @@ public class BeatManager : MonoBehaviour
                 pulseAperture = false;
             }
 
-            if (_stacks > 0 )
+            if (Stacks > 0 )
             {
-                if (_stacks >= 3) 
+                if (Stacks >= 3) 
                 {
-                    _stacks = 3;
+                    Stacks = 3;
                     //UI fever ici
-                    
                 }
 
-                _audioSource.volume = .25f + (.25f * _stacks);
+                _audioSource.volume = .25f + (.25f * Stacks);
             }
             else
             {
