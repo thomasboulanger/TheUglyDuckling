@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 5
-  maxActionRepetition: 2
+  maxActionRepetition: 1
   distanceDetection: 35
   cubeDisplay: {fileID: 2048053220}
   nbAttacks: 2
@@ -12110,7 +12110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5799427618019358928, guid: 58b7275a88d38314fac419830bae97a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 211.2
       objectReference: {fileID: 0}
     - target: {fileID: 5799427618019358928, guid: 58b7275a88d38314fac419830bae97a5, type: 3}
       propertyPath: m_LocalPosition.y
