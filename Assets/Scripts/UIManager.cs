@@ -25,9 +25,7 @@ public class UIManager : MonoBehaviour
     private void Awake()
     {
         _player = FindObjectOfType<PlayerManager>();
-        
-        pauseMenu.SetActive(false);
-        
+
         SetMaxSliderValue(healthSlider, _player.Health);
         SetMaxSliderValue(specialHitSlider, Variables.MaxSpecial);
     }
@@ -129,12 +127,14 @@ public class UIManager : MonoBehaviour
 
     private void Pause()
     {
+        BeatManager.AudioSource.Pause();
         Time.timeScale = 0f;
         pauseMenu.SetActive(true);
     }
 
     public void Resume()
     {
+        BeatManager.AudioSource.UnPause();
         Time.timeScale = 1f;
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
@@ -148,7 +148,7 @@ public class UIManager : MonoBehaviour
         optionsMenu.SetActive(false);
     }
     
-    [UsedImplicitly] public void Options()
+    public void Options()
     {
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(true);

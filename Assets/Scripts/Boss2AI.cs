@@ -8,32 +8,52 @@ public class Boss2AI : BossManager
             
         if (!(BeatManager.beatTimer >= BeatManager.beatInterval)) return;
         
-        if (actionCount == 0)
+        if (ActionCount == 0)
         {
-            randomIndex = Random.Range(Variables.FirstActionIndex, 4);
+            RandomIndex = Random.Range(Variables.FirstActionIndex, 4);
             
-            if(randomIndex == 0 || randomIndex == 1) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
-            else if(randomIndex == 2) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.blue;
-            else if(randomIndex == 3) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
+            switch (RandomIndex)
+            {
+                case 0:
+                case 1:
+                    cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
+                    break;
+                case 2:
+                    cubeDisplay.GetComponent<SpriteRenderer>().color = Color.blue;
+                    break;
+                case 3:
+                    cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
+                    break;
+            }
             
             if(AttackCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
         }
         
-        actionCount++;
+        ActionCount++;
 
-        if (actionCount != 4) return;
+        if (ActionCount != 4) return;
         
         if(AttackCount == maxActionRepetition) Rest();
-        else RandomAction(randomIndex);
+        else RandomAction(RandomIndex);
         
-        actionCount = 0;
+        ActionCount = 0;
     }
         
     protected override void RandomAction(int index)
     {
-        if(index == 0 || index == 1) Attack(index);
-        else if(index == 2) Dodge();
-        else if(index == 3) Rest();
+        switch (index)
+        {
+            case 0:
+            case 1:
+                Attack(index);
+                break;
+            case 2:
+                Dodge();
+                break;
+            case 3:
+                Rest();
+                break;
+        }
     }
     
 }

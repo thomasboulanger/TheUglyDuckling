@@ -87,15 +87,7 @@ public class EnemyAI : Entity
         if (index == Variables.FirstActionIndex){ Attack();}
         else Dodge();
     }
-    
-    protected virtual void RandomAction()
-    {
-        
 
-        /*if (randomIndex == Variables.FirstActionIndex){ Attack();}
-        else Dodge();*/
-    }
-        
     protected virtual void Attack()
     {
         UpdateCounters(true);
@@ -120,9 +112,9 @@ public class EnemyAI : Entity
         Animator.Play(Variables.DodgeAnimName);
     }
 
-    protected int actionCount;
+    protected int ActionCount;
 
-    protected int randomIndex;
+    protected int RandomIndex;
     
     protected virtual void EnemyActions()
     {
@@ -130,25 +122,25 @@ public class EnemyAI : Entity
 
         if (!(BeatManager.beatTimer >= BeatManager.beatInterval)) return;
 
-        if (actionCount == 0)
+        if (ActionCount == 0)
         {
-            randomIndex = Random.Range(Variables.FirstActionIndex, Variables.NbActions);
+            RandomIndex = Random.Range(Variables.FirstActionIndex, Variables.NbActions);
             
-            cubeDisplay.GetComponent<SpriteRenderer>().color = randomIndex == 0 ? Color.red : Color.cyan;
+            cubeDisplay.GetComponent<SpriteRenderer>().color = RandomIndex == 0 ? Color.red : Color.cyan;
             
             if(_dodgeCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
             else if(AttackCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
         }
         
-        actionCount++;
+        ActionCount++;
 
-        if (actionCount != 4) return;
+        if (ActionCount != 4) return;
 
         if(_dodgeCount == maxActionRepetition) Attack();
         else if(AttackCount == maxActionRepetition) Dodge();
-        else RandomAction(randomIndex);
+        else RandomAction(RandomIndex);
                 
-        actionCount = 0;
+        ActionCount = 0;
     }
     #endregion
 

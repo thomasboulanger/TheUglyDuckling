@@ -2,9 +2,7 @@ using UnityEngine;
 
 public class Boss3AI : BossManager
 {
-    [SerializeField] private int nbAttacksPhase1;
-        
-    public bool _phase2;
+    private bool _phase2;
         
     protected override void Update()
     {
@@ -19,57 +17,99 @@ public class Boss3AI : BossManager
             
         if (!(BeatManager.beatTimer >= BeatManager.beatInterval)) return;
         
-        if (actionCount == 0)
+        if (ActionCount == 0)
         {
             if (!_phase2)
             {
-                randomIndex = Random.Range(Variables.FirstActionIndex, 4);
-            
-                if(randomIndex == 0 || randomIndex == 1) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
-                else if(randomIndex == 2) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.blue;
-                else if(randomIndex == 3) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
+                RandomIndex = Random.Range(Variables.FirstActionIndex, 4);
+
+                switch (RandomIndex)
+                {
+                    case 0:
+                    case 1:
+                        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
+                        break;
+                    case 2:
+                        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.blue;
+                        break;
+                    case 3:
+                        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
+                        break;
+                }
             }
             else
             {
-                randomIndex = Random.Range(Variables.FirstActionIndex, 5);
-            
-                if(randomIndex == 0 || randomIndex == 1 || randomIndex == 2) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
-                else if(randomIndex == 3) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.blue;
-                else if(randomIndex == 4) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
+                RandomIndex = Random.Range(Variables.FirstActionIndex, 5);
+
+                switch (RandomIndex)
+                {
+                    case 0:
+                    case 1:
+                    case 2:
+                        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
+                        break;
+                    case 3:
+                        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.blue;
+                        break;
+                    case 4:
+                        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
+                        break;
+                }
             }
             
             
             if(AttackCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
         }
         
-        actionCount++;
+        ActionCount++;
         
-        if (actionCount != 4) return;
+        if (ActionCount != 4) return;
         
         RandomAction();
 
-        actionCount = 0;
+        ActionCount = 0;
     }
 
     #region RandomActions
     protected override void RandomAction()
     {
-        if(!_phase2) RandomActionPhase1(randomIndex);
-        else RandomActionPhase2(randomIndex);
+        if(!_phase2) RandomActionPhase1(RandomIndex);
+        else RandomActionPhase2(RandomIndex);
     }
         
     private void RandomActionPhase1(int index)
     {
-        if(index == 0 || index == 1) Attack(index);
-        else if(index == 2) Dodge();
-        else if(index == 3) Rest();
+        switch (index)
+        {
+            case 0:
+            case 1:
+                Attack(index);
+                break;
+            case 2:
+                Dodge();
+                break;
+            case 3:
+                Rest();
+                break;
+        }
     }
 
     private void RandomActionPhase2(int index)
     {
-        if(index == 0 || index == 1 || index == 2) Attack(index);
-        else if(index == 3) Dodge();
-        else if(index == 4) Rest();
+        switch (index)
+        {
+            case 0:
+            case 1:
+            case 2:
+                Attack(index);
+                break;
+            case 3:
+                Dodge();
+                break;
+            case 4:
+                Rest();
+                break;
+        }
     }
     #endregion
         

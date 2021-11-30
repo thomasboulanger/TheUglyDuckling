@@ -8,21 +8,21 @@ public class Boss1AI : BossManager
 
         if (!(BeatManager.beatTimer >= BeatManager.beatInterval)) return;
         
-        if (actionCount == 0)
+        if (ActionCount == 0)
         {
             cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
 
             if(AttackCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
         }
         
-        actionCount++;
+        ActionCount++;
 
-        if (actionCount != 4) return;
+        if (ActionCount != 4) return;
         
         if(AttackCount == maxActionRepetition) Reload();
         else Attack();
         
-        actionCount = 0;
+        ActionCount = 0;
     }
     
     protected override void RandomAction()
