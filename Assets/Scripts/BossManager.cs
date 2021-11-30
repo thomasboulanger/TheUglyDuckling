@@ -36,19 +36,22 @@ public abstract class BossManager : EnemyAI
     protected void Rest()
     {
         ResetCounters();
-        animator.Play(Variables.RestAnimName);
+        
+        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
+        
+        Animator.Play(Variables.RestAnimName);
     }
         
     protected void Attack(int attackIndex)
     {
         UpdateCounters(true);
             
-        isActive = true;
+        IsActive = true;
         
         cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
         
-        animator.Play(Variables.AttackAnimName + attackIndex);
+        Animator.Play(Variables.AttackAnimName + attackIndex);
 
-        weapon.Shoot();
+        Weapon.Shoot();
     }
 }

@@ -4,25 +4,22 @@ public class Boss1AI : BossManager
 {
     protected override void EnemyActions()
     {
-        if (isActive) return;
+        if (IsActive) return;
 
         if (!(BeatManager.beatTimer >= BeatManager.beatInterval)) return;
         
         if (actionCount == 0)
         {
-            //randomIndex = Random.Range(Variables.FirstActionIndex, Variables.NbActions);
-            
             cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
-            
-            //if(dodgeCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
-            if(attackCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
+
+            if(AttackCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
         }
         
         actionCount++;
 
         if (actionCount != 4) return;
         
-        if(attackCount == maxActionRepetition) Reload();
+        if(AttackCount == maxActionRepetition) Reload();
         else Attack();
         
         actionCount = 0;
@@ -34,7 +31,6 @@ public class Boss1AI : BossManager
 
         if(randomIndex == 1) Attack();
         else Reload();
-        //RandomAttack(randomIndex);
     }
     
     private void Reload()
@@ -43,6 +39,6 @@ public class Boss1AI : BossManager
         
         cubeDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
         
-        animator.Play(Variables.ReloadAnimName);
+        Animator.Play(Variables.ReloadAnimName);
     }
 }

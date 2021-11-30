@@ -5,22 +5,22 @@ using Random = UnityEngine.Random;
 
 public class EnemyAI : Entity
 {
-    protected Animator animator;
+    protected Animator Animator;
         
-    protected bool isActive;
+    protected bool IsActive;
         
-    protected int attackCount;
+    protected int AttackCount;
         
     [SerializeField] protected int maxActionRepetition = 2;
     [SerializeField] protected float distanceDetection = 10f;
 
     private State _currentState = State.Idle;
 
-    protected int dodgeCount;
+    private int _dodgeCount;
         
     private Transform _player;
 
-    protected Weapon weapon;
+    protected Weapon Weapon;
 
     [SerializeField] protected GameObject cubeDisplay;
     
@@ -33,9 +33,9 @@ public class EnemyAI : Entity
 
     protected void Awake()
     {
-        animator = GetComponent<Animator>();
+        Animator = GetComponent<Animator>();
 
-        weapon = GetComponentInChildren<Weapon>();
+        Weapon = GetComponentInChildren<Weapon>();
             
         _player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).transform;
 
@@ -75,16 +75,16 @@ public class EnemyAI : Entity
 
     private void Dead()
     {
-        animator.Play(Variables.DeadAnimName);
+        Animator.Play(Variables.DeadAnimName);
     }
     #endregion
         
     #region Actions
-    protected virtual void RandomAction(int randomIndex)
+    protected virtual void RandomAction(int index)
     {
         
 
-        if (randomIndex == Variables.FirstActionIndex){ Attack();}
+        if (index == Variables.FirstActionIndex){ Attack();}
         else Dodge();
     }
     
@@ -100,24 +100,24 @@ public class EnemyAI : Entity
     {
         UpdateCounters(true);
             
-        isActive = true;
+        IsActive = true;
 
         cubeDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
         
-        animator.Play(Variables.AttackAnimName);
+        Animator.Play(Variables.AttackAnimName);
 
-        weapon.Shoot();
+        Weapon.Shoot();
     }
         
     protected void Dodge()
     {
         UpdateCounters(false);
             
-        isActive = true;
+        IsActive = true;
         
         cubeDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
             
-        animator.Play(Variables.DodgeAnimName);
+        Animator.Play(Variables.DodgeAnimName);
     }
 
     protected int actionCount;
@@ -126,7 +126,7 @@ public class EnemyAI : Entity
     
     protected virtual void EnemyActions()
     {
-        if (isActive) return;
+        if (IsActive) return;
 
         if (!(BeatManager.beatTimer >= BeatManager.beatInterval)) return;
 
@@ -136,16 +136,16 @@ public class EnemyAI : Entity
             
             cubeDisplay.GetComponent<SpriteRenderer>().color = randomIndex == 0 ? Color.red : Color.cyan;
             
-            if(dodgeCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
-            else if(attackCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
+            if(_dodgeCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
+            else if(AttackCount == maxActionRepetition) cubeDisplay.GetComponent<SpriteRenderer>().color = Color.cyan;
         }
         
         actionCount++;
 
         if (actionCount != 4) return;
 
-        if(dodgeCount == maxActionRepetition) Attack();
-        else if(attackCount == maxActionRepetition) Dodge();
+        if(_dodgeCount == maxActionRepetition) Attack();
+        else if(AttackCount == maxActionRepetition) Dodge();
         else RandomAction(randomIndex);
                 
         actionCount = 0;
@@ -153,7 +153,7 @@ public class EnemyAI : Entity
     #endregion
 
     #region AnimationEvent
-    [UsedImplicitly] private void EndAnimation() => isActive = false;
+    [UsedImplicitly] private void EndAnimation() => IsActive = false;
     [UsedImplicitly] private void DestroyWhenDead() => Destroy(gameObject);
     #endregion
         
@@ -162,20 +162,20 @@ public class EnemyAI : Entity
     {
         if (isAttack)
         {
-            dodgeCount = Variables.ResetCounter;
-            attackCount++;
+            _dodgeCount = Variables.ResetCounter;
+            AttackCount++;
         }
         else
         {
-            attackCount = Variables.ResetCounter;
-            dodgeCount++;
+            AttackCount = Variables.ResetCounter;
+            _dodgeCount++;
         }
     }
         
     protected void ResetCounters()
     {
-        dodgeCount = Variables.ResetCounter;
-        attackCount = Variables.ResetCounter;
+        _dodgeCount = Variables.ResetCounter;
+        AttackCount = Variables.ResetCounter;
     }
     #endregion
 

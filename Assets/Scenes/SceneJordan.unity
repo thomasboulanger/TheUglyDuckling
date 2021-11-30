@@ -1051,23 +1051,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4210157123753652, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
   m_PrefabInstance: {fileID: 222324108}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &222324111
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 222324109}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bb28715c73629145a6c034904cc4492, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 5
-  maxActionRepetition: 1
-  distanceDetection: 35
-  cubeDisplay: {fileID: 2048053220}
-  nbAttacks: 2
 --- !u!61 &222324112
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1094,6 +1077,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5179844}
   m_EdgeRadius: 0
+--- !u!114 &222324114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 222324109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdb6f4278e4906245bca05f715f44a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 70
+  maxActionRepetition: 1
+  distanceDetection: 35
+  cubeDisplay: {fileID: 2048053220}
+  nbAttacks: 2
+  nbAttacksPhase1: 0
+  _phase2: 0
 --- !u!1 &242111932
 GameObject:
   m_ObjectHideFlags: 0
@@ -2309,7 +2311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddb504b9bb490f4ab27b68802e530d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.01
+  fireRate: 0.25
   distance: 35
   speed: 20
   isPlayer: 0
