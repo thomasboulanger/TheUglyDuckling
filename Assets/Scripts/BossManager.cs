@@ -2,8 +2,6 @@ using UnityEngine;
 
 public abstract class BossManager : EnemyAI
 {
-    [SerializeField] protected int nbAttacks = 2;
-    
     protected void Rest()
     {
         ResetCounters();
@@ -19,7 +17,7 @@ public abstract class BossManager : EnemyAI
             
         IsActive = true;
         
-        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.red;
+        cubeDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
         
         Animator.Play(Variables.AttackAnimName + attackIndex);
 
