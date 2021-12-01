@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private Slider healthSlider, specialHitSlider, feverSlider;
 
-    [SerializeField] private GameObject pauseMenu, optionsMenu;
+    [SerializeField] private GameObject pauseMenu, optionsMenu, loseMenu;
 
     private PlayerManager _player;
     private Color _tmpColor;
@@ -52,6 +52,8 @@ public class UIManager : MonoBehaviour
             else if(!optionsMenu.activeSelf) Pause();
             else if(optionsMenu.activeSelf) Return();
         }
+        
+        if(_player.PlayerDead) Lose();
 
         _tmpColor.a = BeatManager.pulseAperture ? 1f : 0f;
 
@@ -154,6 +156,14 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(true);
     }
+
+    public void Lose()
+    {
+        Time.timeScale = 0f;
+        loseMenu.SetActive(true);
+    }
+
+    public void ReloadLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 
     private static void SetMaxSliderValue(Slider currentSlider, int maxValue) => currentSlider.maxValue = maxValue;
 

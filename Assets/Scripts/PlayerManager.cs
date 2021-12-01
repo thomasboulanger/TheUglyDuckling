@@ -52,6 +52,8 @@ public class PlayerManager : Entity
     private static readonly int SpecialAttack = Animator.StringToHash("SpecialAttack");
     private static readonly int IsDead = Animator.StringToHash("IsDead");
 
+    public bool PlayerDead;
+
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -64,6 +66,8 @@ public class PlayerManager : Entity
     private void Update()
     {
         _aperture = BeatManager.aperture;
+
+        if (isDead) _currentState = State.IsDead;
         
         if (BeatManager.beatTimer >= BeatManager.beatInterval)
         {
@@ -191,6 +195,7 @@ public class PlayerManager : Entity
             case State.IsDead:
                 //do the dead
                 _animIsDead = true;
+                PlayerDead = true;
                 _animator.SetBool(IsDead,_animIsDead);
                 break;
             default:

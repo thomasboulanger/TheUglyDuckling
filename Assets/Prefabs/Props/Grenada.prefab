@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 15
-  damage: 5
+  damage: 6
 --- !u!96 &-5949895343635775914
 TrailRenderer:
   serializedVersion: 2
