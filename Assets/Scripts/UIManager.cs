@@ -142,12 +142,14 @@ public class UIManager : MonoBehaviour
 
     [UsedImplicitly] public static void ReturnMain() => SceneManager.LoadScene(0);
     
+    //ca jordan tu peux le setup avec les event des boutons ;) 
     public void Return()
     {
         pauseMenu.SetActive(true);
         optionsMenu.SetActive(false);
     }
     
+    // et ca aussi de fait o: 
     public void Options()
     {
         pauseMenu.SetActive(false);

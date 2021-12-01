@@ -436,6 +436,7 @@ MonoBehaviour:
   health: 2
   maxActionRepetition: 2
   distanceDetection: 10
+  cubeDisplay: {fileID: 0}
 --- !u!4 &118785640 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4210157123753652, guid: 6877fb649746c674d8fbbcf60d41892b, type: 3}
@@ -676,10 +677,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddb504b9bb490f4ab27b68802e530d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 0
   distance: 5
   speed: 20
-  bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
   isPlayer: 0
+  bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
+  grenade: {fileID: 0}
 --- !u!1001 &221068444
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -693,7 +696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1539457567028289366, guid: 8ec70bb6591edaf4f9afa5f96c4c75d3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1539457567028289367, guid: 8ec70bb6591edaf4f9afa5f96c4c75d3, type: 3}
       propertyPath: m_RootOrder
@@ -843,7 +846,7 @@ MonoBehaviour:
   health: 5
   maxActionRepetition: 2
   distanceDetection: 10
-  nbAttacks: 2
+  cubeDisplay: {fileID: 0}
 --- !u!61 &222324112
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1171,6 +1174,7 @@ MonoBehaviour:
   health: 2
   maxActionRepetition: 2
   distanceDetection: 10
+  cubeDisplay: {fileID: 0}
 --- !u!61 &522848293
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1523,10 +1527,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddb504b9bb490f4ab27b68802e530d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 0
   distance: 5
   speed: 20
-  bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
   isPlayer: 0
+  bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
+  grenade: {fileID: 0}
 --- !u!1 &707590494
 GameObject:
   m_ObjectHideFlags: 0
@@ -2270,10 +2276,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddb504b9bb490f4ab27b68802e530d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 0
   distance: 5
   speed: 20
-  bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
   isPlayer: 0
+  bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
+  grenade: {fileID: 0}
 --- !u!1 &1091087774
 GameObject:
   m_ObjectHideFlags: 0
@@ -2317,10 +2325,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ddb504b9bb490f4ab27b68802e530d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fireRate: 0
   distance: 5
   speed: 20
-  bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
   isPlayer: 0
+  bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
+  grenade: {fileID: 0}
 --- !u!1001 &1186147215
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2933,6 +2943,7 @@ MonoBehaviour:
   health: 2
   maxActionRepetition: 2
   distanceDetection: 10
+  cubeDisplay: {fileID: 0}
 --- !u!61 &1465055967
 BoxCollider2D:
   m_ObjectHideFlags: 0
