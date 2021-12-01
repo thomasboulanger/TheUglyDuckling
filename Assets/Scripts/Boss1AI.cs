@@ -20,17 +20,9 @@ public class Boss1AI : BossManager
         if (ActionCount != 4) return;
         
         if(AttackCount == maxActionRepetition) Reload();
-        else Attack();
+        else Attack(0);
         
         ActionCount = 0;
-    }
-    
-    protected override void RandomAction()
-    {
-        var randomIndex = Random.Range(1, 3);
-
-        if(randomIndex == 1) Attack();
-        else Reload();
     }
     
     private void Reload()
