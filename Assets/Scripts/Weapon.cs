@@ -15,16 +15,10 @@ public class Weapon : MonoBehaviour
     
     private Quaternion _bulletRotation;
 
-    private float _fireRateTimer;
-    private int _nbAttack;
-    private bool _multipleShoot;
-
     //firerate riffle 0.18f, shotgun 0.1f, laser 1.5f
     private void Update()
     {
         if(isPlayer && InputManager.testInput) SpecialAttack();
-        
-        if(_multipleShoot) _fireRateTimer += Time.deltaTime;
     }
 
     public void Shoot()
@@ -37,19 +31,9 @@ public class Weapon : MonoBehaviour
     
     public void Shoot(int nbBullet)
     {
-        _multipleShoot = true;
-        
-        if (_fireRateTimer >= fireRate && _nbAttack < nbBullet)
+        for (int i = 0; i < nbBullet; i++)
         {
-            _nbAttack++;
-            _fireRateTimer -= fireRate; 
-            Shoot();
-        }
-        else
-        {
-            _multipleShoot = false;
-            _fireRateTimer = 0;
-            _nbAttack = 0;
+            Invoke(nameof(Shoot), i * 0.15f);
         }
     }
 

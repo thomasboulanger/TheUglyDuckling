@@ -11,7 +11,7 @@ public abstract class BossManager : EnemyAI
         Animator.Play(Variables.RestAnimName);
     }
         
-    protected void Attack(int attackIndex)
+    protected void Attack(int attackIndex, int nbBullet)
     {
         UpdateCounters(true);
             
@@ -21,7 +21,7 @@ public abstract class BossManager : EnemyAI
         
         Animator.Play(Variables.AttackAnimName + attackIndex);
 
-        Weapon.Shoot();
+        Weapon.Shoot(nbBullet);
     }
     
     protected virtual void RandomAction()

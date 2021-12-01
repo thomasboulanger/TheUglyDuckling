@@ -83,7 +83,7 @@ public class Boss3AI : BossManager
         {
             case 0:
             case 1:
-                Attack(index);
+                Attack(index, 1);
                 break;
             case 2:
                 Dodge();
@@ -101,7 +101,7 @@ public class Boss3AI : BossManager
             case 0:
             case 1:
             case 2:
-                Attack(index);
+                Attack(index, 1);
                 break;
             case 3:
                 Dodge();

@@ -20,7 +20,7 @@ public class Boss1AI : BossManager
         if (ActionCount != 4) return;
         
         if(AttackCount == maxActionRepetition) Reload();
-        else Attack(0);
+        else Attack(0, 5);
         
         ActionCount = 0;
     }

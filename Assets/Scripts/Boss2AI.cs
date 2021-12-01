@@ -45,7 +45,7 @@ public class Boss2AI : BossManager
         {
             case 0:
             case 1:
-                Attack(index);
+                Attack(index, 1);
                 break;
             case 2:
                 Dodge();
