@@ -33,5 +33,7 @@ public class Weapon : MonoBehaviour
     {
         var currentGrenade = Instantiate(grenade, transform.position,  quaternion.identity).GetComponent<Rigidbody2D>();
         currentGrenade.AddForce(grenade.transform.right * 15f, ForceMode2D.Impulse);
+
+        BeatManager.feverStacks = 0;
     }
 }

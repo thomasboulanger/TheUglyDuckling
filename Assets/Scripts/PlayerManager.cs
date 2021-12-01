@@ -7,7 +7,6 @@ public class PlayerManager : Entity
     public static Vector2 freezeCameraPos;
     public static string combo = "";
     public static bool delayAfterCombo;
-    public static bool canSpecial;
 
 
     public AudioClip clipUp;
@@ -32,6 +31,8 @@ public class PlayerManager : Entity
     private int _nbAttack;
     private int _feverCount;
     private Weapon _weapon;
+
+    public static bool PlayerDetected;
 
     private enum State
     {
@@ -93,7 +94,7 @@ public class PlayerManager : Entity
                 break;
             case State.WalkForward:
                 combo = "";
-                if (delayAfterCombo)
+                if (delayAfterCombo && !PlayerDetected)
                 {
                     _animWalkForward = true;
                     _animator.SetBool(WalkForward,_animWalkForward);
@@ -172,13 +173,12 @@ public class PlayerManager : Entity
             
             case State.SpecialAttack:
                 combo = "";
-                if (delayAfterCombo && canSpecial)
+                if (delayAfterCombo && BeatManager.feverStacks == Variables.MaxSpecial)
                 {
                     _animSpecialAttack = true;
                     _animator.SetBool(SpecialAttack,_animSpecialAttack);
                     // special shoot
                     _weapon.SpecialAttack();
-                   //feverStack = 0;
                 }
                 else
                 {

@@ -23,7 +23,7 @@ public class EnemyAI : Entity
     protected Weapon Weapon;
 
     [SerializeField] protected GameObject cubeDisplay;
-    
+
     private enum State
     {
         Idle,
@@ -69,7 +69,9 @@ public class EnemyAI : Entity
     private void Combat()
     {
         EnemyActions();
-            
+
+        PlayerManager.PlayerDetected = true;
+        
         CheckPlayerStatus();
     }
 
@@ -78,7 +80,12 @@ public class EnemyAI : Entity
         Animator.Play(Variables.DeadAnimName);
     }
     #endregion
-        
+
+    private void OnDestroy()
+    {
+        PlayerManager.PlayerDetected = false;
+    }
+
     #region Actions
     protected virtual void RandomAction(int index)
     {

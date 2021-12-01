@@ -11,7 +11,7 @@ public class BeatManager : MonoBehaviour
     public static bool aperture;
     public static bool pulseAperture;
     public static int Stacks;
-    public static int feverStacks;
+    public static int feverStacks = 3;
     
     public float BPM1, BPM2, BPM3;
     public AudioClip Music0, Music1, Music2, Music3;
@@ -25,10 +25,7 @@ public class BeatManager : MonoBehaviour
     private int _sceneIndex;
     private float _beatMargin;
     private float _pulseMargin;
-
     
-    
-
     private void Awake()
     {                                                                                                                               
         DontDestroyOnLoad(gameObject);
