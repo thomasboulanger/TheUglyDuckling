@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1090985435613277150}
   - component: {fileID: 1090985435613277144}
   m_Layer: 0
-  m_Name: 2D Ground
+  m_Name: 2D FirstLayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
