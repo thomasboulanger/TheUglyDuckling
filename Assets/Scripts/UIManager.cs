@@ -13,10 +13,9 @@ public class UIManager : MonoBehaviour
     public Sprite inputLeft;
     public Sprite inputRight;
     
-    [SerializeField] private Slider healthSlider;
-    [SerializeField] private Slider specialHitSlider;
-    [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject optionsMenu;
+    [SerializeField] private Slider healthSlider, specialHitSlider, feverSlider;
+
+    [SerializeField] private GameObject pauseMenu, optionsMenu;
 
     private PlayerManager _player;
     private Color _tmpColor;
@@ -28,6 +27,7 @@ public class UIManager : MonoBehaviour
 
         SetMaxSliderValue(healthSlider, _player.Health);
         SetMaxSliderValue(specialHitSlider, Variables.MaxSpecial);
+        SetMaxSliderValue(feverSlider, 3);
     }
 
     private void Start()
@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
     {
         SetCurrentSliderValue(healthSlider, _player.Health);
         SetCurrentSliderValue(specialHitSlider, BeatManager.feverStacks);
+        SetCurrentSliderValue(feverSlider, BeatManager.Stacks);
 
         if (InputManager.pauseInput)
         {
@@ -142,14 +143,12 @@ public class UIManager : MonoBehaviour
 
     [UsedImplicitly] public static void ReturnMain() => SceneManager.LoadScene(0);
     
-    //ca jordan tu peux le setup avec les event des boutons ;) 
     public void Return()
     {
         pauseMenu.SetActive(true);
         optionsMenu.SetActive(false);
     }
     
-    // et ca aussi de fait o: 
     public void Options()
     {
         pauseMenu.SetActive(false);
