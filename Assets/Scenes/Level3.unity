@@ -223,6 +223,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 129615220346865280, guid: ef853b1da60d23e4293ef43bfca748a5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c10d8bf1d3cffa849831ab0f476c5c2b, type: 2}
     - target: {fileID: 129615220653923978, guid: ef853b1da60d23e4293ef43bfca748a5, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -271,6 +275,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 129615221299015563, guid: ef853b1da60d23e4293ef43bfca748a5, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c10d8bf1d3cffa849831ab0f476c5c2b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef853b1da60d23e4293ef43bfca748a5, type: 3}
 --- !u!1001 &413714933

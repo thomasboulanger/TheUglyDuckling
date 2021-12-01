@@ -39,6 +39,6 @@ Material:
     - _ScrollSpeed: 0.01
     - _Tiling: 2
     m_Colors:
-    - _EmissiveColor: {r: 0.5605113, g: 0, b: 1.4142135, a: 0}
-    - _SquareColor: {r: 0.7490196, g: 0, b: 0.39607844, a: 0}
+    - _EmissiveColor: {r: 2.5283017, g: 0.3602827, b: 0.13118547, a: 0}
+    - _SquareColor: {r: 0.8207547, g: 0.05734654, b: 0, a: 0}
   m_BuildTextureStacks: []
