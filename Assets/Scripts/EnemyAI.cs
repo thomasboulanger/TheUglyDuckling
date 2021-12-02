@@ -24,6 +24,8 @@ public class EnemyAI : Entity
 
     [SerializeField] protected GameObject cubeDisplay;
 
+    protected BoxCollider2D BoxCollider2D;
+
     private enum State
     {
         Idle,
@@ -38,6 +40,8 @@ public class EnemyAI : Entity
         Weapon = GetComponentInChildren<Weapon>();
             
         _player = GameObject.FindGameObjectWithTag(Variables.PlayerTag).transform;
+
+        BoxCollider2D = GetComponent<BoxCollider2D>();
 
         ResetCounters();
     }
@@ -91,7 +95,7 @@ public class EnemyAI : Entity
     {
         
 
-        if (index == Variables.FirstActionIndex){ Attack();}
+        if (index == Variables.FirstActionIndex) Attack();
         else Dodge();
     }
 
@@ -111,11 +115,15 @@ public class EnemyAI : Entity
     protected void Dodge()
     {
         UpdateCounters(false);
-            
+         
+        BoxCollider2D.enabled = false;
+        
         IsActive = true;
         
         cubeDisplay.GetComponent<SpriteRenderer>().color = Color.yellow;
-            
+
+        
+        
         Animator.Play(Variables.DodgeAnimName);
     }
 
@@ -126,6 +134,8 @@ public class EnemyAI : Entity
     protected virtual void EnemyActions()
     {
         if (IsActive) return;
+        
+        BoxCollider2D.enabled = true;
 
         if (!(BeatManager.beatTimer >= BeatManager.beatInterval)) return;
 
