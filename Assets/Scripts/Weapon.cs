@@ -14,13 +14,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject grenade;
     
     private Quaternion _bulletRotation;
-
-    //firerate riffle 0.18f, shotgun 0.1f, laser 1.5f
-    private void Update()
-    {
-        if(isPlayer && InputManager.testInput) SpecialAttack();
-    }
-
+    
     public void Shoot()
     {
         _bulletRotation = !isPlayer ? Quaternion.Euler(0f, 0f, 180f + Random.Range(-2f,6f)) : Quaternion.Euler(0f, 0f, Random.Range(-2f,6f));
@@ -41,6 +35,7 @@ public class Weapon : MonoBehaviour
     {
         var currentGrenade = Instantiate(grenade, transform.position,  quaternion.identity).GetComponent<Rigidbody2D>();
         currentGrenade.AddForce(grenade.transform.right * 15f, ForceMode2D.Impulse);
+        Destroy(currentGrenade.transform.gameObject, 5f);
 
         BeatManager.feverStacks = 0;
     }

@@ -116,17 +116,18 @@ public class PlayerManager : Entity
                 combo = "";
                 if (delayAfterCombo)
                 {
+                    transform.GetComponent<BoxCollider2D>().enabled = false;
                     if (_lerpValue > 1f)
                     {
                         _lerpValue = 1f;
                     }
-                    if (_afterComboTimer <= 1)
+                    if (_afterComboTimer <=2)
                     {
                         _animWalkBackward = true;
                         _animator.SetBool(WalkBackward,_animWalkBackward);
                         _rb2D.MovePosition(Vector2.Lerp(freezeCameraPos,
-                            new Vector2(freezeCameraPos.x - 6.5f, freezeCameraPos.y),
-                            _lerpValue += Time.deltaTime /.4f));
+                            new Vector2(freezeCameraPos.x - 12f, freezeCameraPos.y),
+                            _lerpValue += Time.deltaTime/.5f));
                     }
                     else
                     {
@@ -135,12 +136,13 @@ public class PlayerManager : Entity
                         _animWalkForward = true;
                         _animator.SetBool(WalkForward,_animWalkForward);
                         _rb2D.MovePosition(Vector2.Lerp(freezeCameraPos,
-                            new Vector2(freezeCameraPos.x - 6.5f, freezeCameraPos.y),
-                            _lerpValue -= Time.deltaTime /.4f));
+                            new Vector2(freezeCameraPos.x - 12f, freezeCameraPos.y),
+                            _lerpValue -= Time.deltaTime/.5f));
                     }
                 }
                 else
                 {
+                    transform.GetComponent<BoxCollider2D>().enabled = true;
                     _animWalkForward = false;
                     _animator.SetBool(WalkForward,_animWalkForward);
                     isCameraFreezed = false;
@@ -181,7 +183,6 @@ public class PlayerManager : Entity
                 {
                     _animSpecialAttack = true;
                     _animator.SetBool(SpecialAttack,_animSpecialAttack);
-                    // special shoot
                     _weapon.SpecialAttack();
                 }
                 else
