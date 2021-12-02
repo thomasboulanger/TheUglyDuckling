@@ -5,6 +5,8 @@ public class Boss2AI : BossManager
     protected override void EnemyActions()
     {
         if (IsActive) return;
+        
+        BoxCollider2D.enabled = true;
             
         if (!(BeatManager.beatTimer >= BeatManager.beatInterval)) return;
         
@@ -48,6 +50,7 @@ public class Boss2AI : BossManager
                 Attack(index, 1);
                 break;
             case 2:
+                Debug.Log("uoi");
                 Dodge();
                 break;
             case 3:

@@ -642,6 +642,10 @@ PrefabInstance:
       propertyPath: health
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 8575493137670708480, guid: 58b7275a88d38314fac419830bae97a5, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58b7275a88d38314fac419830bae97a5, type: 3}
 --- !u!1001 &971904413
