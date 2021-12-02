@@ -504,22 +504,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7068587075049397320, guid: 8ec70bb6591edaf4f9afa5f96c4c75d3, type: 3}
-      propertyPath: inputUp
-      value: 
-      objectReference: {fileID: 21300000, guid: 63c7b87745f7dd4438f75f3a1623b085, type: 3}
-    - target: {fileID: 7068587075049397320, guid: 8ec70bb6591edaf4f9afa5f96c4c75d3, type: 3}
-      propertyPath: inputLeft
-      value: 
-      objectReference: {fileID: 21300000, guid: ada2e8e4edef5c646a7e34589c40a5d5, type: 3}
-    - target: {fileID: 7068587075049397320, guid: 8ec70bb6591edaf4f9afa5f96c4c75d3, type: 3}
-      propertyPath: inputRight
-      value: 
-      objectReference: {fileID: 21300000, guid: a6c595c2adb87754395071afe228c90d, type: 3}
-    - target: {fileID: 7068587075049397320, guid: 8ec70bb6591edaf4f9afa5f96c4c75d3, type: 3}
-      propertyPath: inputBottom
-      value: 
-      objectReference: {fileID: 21300000, guid: 1847f2de41c4dcf4bae58fbf04f0fa6b, type: 3}
     - target: {fileID: 7068587075049397321, guid: 8ec70bb6591edaf4f9afa5f96c4c75d3, type: 3}
       propertyPath: layers3D
       value: 
