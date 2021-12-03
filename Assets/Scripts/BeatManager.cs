@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class BeatManager : MonoBehaviour
 {
+    public static BeatManager singleton;
     
     public static float beatTimer;
     public static float beatInterval;
@@ -27,7 +28,14 @@ public class BeatManager : MonoBehaviour
     private float _pulseMargin;
     
     private void Awake()
-    {                                                                                                                               
+    {
+        if (singleton != null && singleton != this)
+        {
+            Destroy(gameObject);    // Suppression d'une instance précédente (sécurité...sécurité...)
+        }
+ 
+        singleton = this;
+        
         DontDestroyOnLoad(gameObject);
         AudioSource = GetComponent<AudioSource>();
         _bpm1 = BPM1;
