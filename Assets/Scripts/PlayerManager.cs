@@ -179,7 +179,7 @@ public class PlayerManager : Entity
             
             case State.SpecialAttack:
                 combo = "";
-                if (delayAfterCombo && BeatManager.feverStacks == Variables.MaxSpecial)
+                if (delayAfterCombo && BeatManager.feverStacks >= Variables.MaxSpecial)
                 {
                     _animSpecialAttack = true;
                     _animator.SetBool(SpecialAttack,_animSpecialAttack);
