@@ -305,7 +305,17 @@ public class PlayerManager : Entity
     }
     public void CoupSpecial()
     {
-        OnCombo();
+        delayAfterCombo = true;
+        if (BeatManager.feverStacks >= 3)
+        {
+            BeatManager.Stacks++;
+        }
+        if (BeatManager.Stacks >= 3)
+        {
+            BeatManager.feverStacks++;
+        }
+        _animIdle = false;
+        _animator.SetBool(Idle,_animIdle);
         _currentState = State.SpecialAttack;
     }
     
