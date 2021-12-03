@@ -97,7 +97,14 @@ public class BeatManager : MonoBehaviour
         //for development only
         if (_sceneIndex > 3)
         {
-            _sceneIndex = 2;
+            if (_sceneIndex == 6)
+            {
+                _sceneIndex = 0;
+            }
+            else
+            {
+                _sceneIndex = 2;
+            }
         }
         //end
         
