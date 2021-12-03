@@ -294,10 +294,6 @@ public class PlayerManager : Entity
     public void Attaquer()
     {
         OnCombo();
-        if (PlayerDetected)
-        {
-            BeatManager.feverStacks--;
-        }
         _currentState = State.Attack;
     }
     public void Retraite()

@@ -7,10 +7,7 @@ public class SceneEventScript : MonoBehaviour
     private BeatManager _beatManager;
     void Start()
     {
-        if (_beatManager == null)
-        {
-            _beatManager = GameObject.Find("GameManager").GetComponent<BeatManager>();
-        }
+        _beatManager = GameObject.Find("GameManager").GetComponent<BeatManager>();
         sceneEvent.AddListener(_beatManager.GetSceneIndex);
         sceneEvent.Invoke();
     }
