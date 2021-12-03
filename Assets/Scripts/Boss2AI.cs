@@ -50,7 +50,6 @@ public class Boss2AI : BossManager
                 Attack(index, 1);
                 break;
             case 2:
-                Debug.Log("uoi");
                 Dodge();
                 break;
             case 3:

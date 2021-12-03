@@ -115,8 +115,8 @@ public class EnemyAI : Entity
     protected void Dodge()
     {
         UpdateCounters(false);
-         
-        BoxCollider2D.enabled = false;
+        
+        GetComponent<BoxCollider2D>().enabled = false;
         
         IsActive = true;
         
