@@ -143,7 +143,7 @@ public class UIManager : MonoBehaviour
         optionsMenu.SetActive(false);
     }
 
-    [UsedImplicitly] public static void ReturnMain() => SceneManager.LoadScene(0);
+    [UsedImplicitly] public static void ReturnMain() => SceneManager.LoadScene(6);
     
     public void Return()
     {
