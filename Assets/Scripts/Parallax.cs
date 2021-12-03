@@ -18,8 +18,6 @@ public class Parallax : MonoBehaviour
         
     private void FixedUpdate()
     {
-        //_playerRb.velocity = new Vector3(10f, 0, 0);
-            
         //Parallax2D();
         Parallax3D();
     }
@@ -38,6 +36,6 @@ public class Parallax : MonoBehaviour
 
     private void Parallax3D()
     {
-        layers3D.transform.position -= new Vector3(globalScrollSpeed /* _playerRb.velocity.x*/, 0, 0) ;
+        layers3D.transform.position -= new Vector3(globalScrollSpeed * _playerRb.velocity.x, 0, 0) ;
     }
 }
