@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Special : MonoBehaviour
@@ -6,9 +7,10 @@ public class Special : MonoBehaviour
     [SerializeField] private int damage = 2;
 
     private readonly int _layerMask = 1 << 7;
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag(Variables.EnemyTag)) Destroy(gameObject);
+        if (other.CompareTag(Variables.EnemyTag)) Destroy(gameObject);
     }
 
     private void OnDestroy()

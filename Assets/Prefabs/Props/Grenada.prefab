@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4416240985200554216}
   - component: {fileID: 1864622550768460218}
   - component: {fileID: -5949895343635775914}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Grenada
   m_TagString: Untagged
   m_Icon: {fileID: 0}

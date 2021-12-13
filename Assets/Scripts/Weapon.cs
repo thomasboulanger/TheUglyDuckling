@@ -1,3 +1,4 @@
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -14,7 +15,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject grenade;
     
     private Quaternion _bulletRotation;
-    
+
     public void Shoot()
     {
         _bulletRotation = !isPlayer ? Quaternion.Euler(0f, 0f, 180f + Random.Range(-2f,6f)) : Quaternion.Euler(0f, 0f, Random.Range(-2f,6f));
