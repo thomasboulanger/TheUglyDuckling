@@ -531,7 +531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainMenu: {fileID: 464951255}
   levelMenu: {fileID: 255361091}
-  optionsMenu: {fileID: 0}
+  optionsMenu: {fileID: 1175175201}
   creditsMenu: {fileID: 2028380675}
 --- !u!114 &88082653
 MonoBehaviour:
