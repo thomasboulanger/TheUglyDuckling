@@ -45,7 +45,6 @@ public class BeatManager : MonoBehaviour
 
     private void Update()
     {
-
         if (beatTimer >= beatInterval)
         {
             beatTimer -= beatInterval;

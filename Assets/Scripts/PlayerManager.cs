@@ -61,10 +61,14 @@ public class PlayerManager : Entity
         _animator = GetComponent<Animator>();
 
         _weapon = GetComponentInChildren<Weapon>();
+
+        BeatManager.feverStacks = 3;
+        BeatManager.Stacks = 0;
     }
 
     private void Update()
     {
+        if (Time.timeScale != 1) return;
         _aperture = BeatManager.aperture;
 
         if (isDead) _currentState = State.IsDead;
