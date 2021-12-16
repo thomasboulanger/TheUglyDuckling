@@ -192,7 +192,7 @@ public class EnemyAI : Entity
     private void CheckPlayerStatus()
     {
         IsPlayerDetected();
-        IsPlayerDead();
+        IsEnemyDead();
     }
         
     private void IsPlayerDetected()
@@ -203,7 +203,7 @@ public class EnemyAI : Entity
         _currentState = Vector3.Distance(playerPosition, enemyPosition) < distanceDetection ? State.Combat : State.Idle;
     }
 
-    private void IsPlayerDead()
+    private void IsEnemyDead()
     {
         if (isDead) _currentState = State.Dead;
     }

@@ -916,6 +916,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3995505632639725137, guid: 06c0ece87550e724ebfd23b870d3af24, type: 3}
   m_PrefabInstance: {fileID: 1008725124}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1008725126 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3998094937708001510, guid: 06c0ece87550e724ebfd23b870d3af24, type: 3}
+  m_PrefabInstance: {fileID: 1008725124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bb28715c73629145a6c034904cc4492, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1273444153
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1260,6 +1271,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 874248249369962710, guid: 6e7598538fc178d4cafa92ee884d778e, type: 3}
+      propertyPath: currentBoss
+      value: 
+      objectReference: {fileID: 1008725126}
     - target: {fileID: 874248249369962711, guid: 6e7598538fc178d4cafa92ee884d778e, type: 3}
       propertyPath: layers3D
       value: 

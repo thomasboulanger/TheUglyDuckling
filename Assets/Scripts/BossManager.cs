@@ -2,6 +2,8 @@ using UnityEngine;
 
 public abstract class BossManager : EnemyAI
 {
+    public bool IsDead => isDead;
+
     protected void Rest()
     {
         ResetCounters();

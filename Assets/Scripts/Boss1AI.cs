@@ -25,6 +25,7 @@ public class Boss1AI : BossManager
         ActionCount = 0;
     }
     
+    
     private void Reload()
     {
         ResetCounters();

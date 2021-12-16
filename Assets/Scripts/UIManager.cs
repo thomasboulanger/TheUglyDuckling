@@ -15,11 +15,13 @@ public class UIManager : MonoBehaviour
     
     [SerializeField] private Slider healthSlider, specialHitSlider, feverSlider;
 
-    [SerializeField] private GameObject pauseMenu, optionsMenu, loseMenu;
+    [SerializeField] private GameObject pauseMenu, optionsMenu, loseMenu, winMenu;
 
     private PlayerManager _player;
     private Color _tmpColor;
     private int _delayTimer;
+
+    [SerializeField] private BossManager currentBoss;
 
     private void Awake()
     {
@@ -28,6 +30,8 @@ public class UIManager : MonoBehaviour
         SetMaxSliderValue(healthSlider, _player.Health);
         SetMaxSliderValue(specialHitSlider, Variables.MaxSpecial);
         SetMaxSliderValue(feverSlider, 3);
+
+        Time.timeScale = 1;
     }
 
     private void Start()
@@ -46,15 +50,15 @@ public class UIManager : MonoBehaviour
         SetCurrentSliderValue(specialHitSlider, BeatManager.feverStacks);
         SetCurrentSliderValue(feverSlider, BeatManager.Stacks);
 
-        if (InputManager.pauseInput)
+        if(_player.PlayerDead) Lose();
+        else if(currentBoss.IsDead) Win();
+        else if (InputManager.pauseInput)
         {
             if(pauseMenu.activeSelf) Resume();
             else if(!optionsMenu.activeSelf) Pause();
             else if(optionsMenu.activeSelf) Return();
         }
         
-        if(_player.PlayerDead) Lose();
-
         _tmpColor.a = BeatManager.pulseAperture ? 1f : 0f;
 
         for (int i = 0; i < pulsePanel.transform.childCount; i++)
@@ -142,6 +146,8 @@ public class UIManager : MonoBehaviour
         pauseMenu.SetActive(false);
         optionsMenu.SetActive(false);
     }
+    
+    
 
     [UsedImplicitly] public static void ReturnMain() => SceneManager.LoadScene(6);
     
@@ -157,10 +163,21 @@ public class UIManager : MonoBehaviour
         optionsMenu.SetActive(true);
     }
 
-    public void Lose()
+    private void Lose()
     {
         Time.timeScale = 0f;
         loseMenu.SetActive(true);
+    }
+    
+    private void Win()
+    {
+        Time.timeScale = 0f;
+        winMenu.SetActive(true);
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void ReloadLevel() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
