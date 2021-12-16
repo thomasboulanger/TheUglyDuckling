@@ -1,10 +1,14 @@
 using System;
+using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private int weaponDamage;
+    [SerializeField] private GameObject _particle;
 
+    
     private int _distance = 2;
     private bool _isPlayer;
 
@@ -15,10 +19,8 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
-
         _startPos = transform.position;
     }
-
     private void Update()
     {
         CheckBulletOutOfRange();
@@ -31,6 +33,11 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.transform.CompareTag("Enemy") || other.transform.CompareTag("Player"))
+        {
+            GameObject go = Instantiate(_particle, transform.position, quaternion.identity);
+            Destroy(go.gameObject,.4f);
+        }
         switch (_isPlayer)
         {
             case true when other.gameObject.CompareTag("Enemy"):
