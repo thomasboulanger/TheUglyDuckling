@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.25
-  distance: 35
+  distance: 50
   speed: 20
   isPlayer: 1
   bullet: {fileID: 1587677193227609275, guid: c501c60e5820e23418e69a5a55781ec3, type: 3}
